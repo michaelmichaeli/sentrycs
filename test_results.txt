@@ -1,5 +1,0 @@
-
-> word-game@0.0.0 test
-> jest
-
-Terminate batch job (Y/N)? Terminate batch job (Y/N)? 
