@@ -3,12 +3,30 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-head: "Archivo Black", sans-serif;
+  --font-sans: "Share Tech", sans-serif;
+  
+  /* Theme colors */
+  --muted: #606067;
+  --background: #fff;
+  --foreground: #000;
+  --primary-50: #fffef0;
+  --primary-100: #fffac2;
+  --primary-200: #fff299;
+  --primary-300: #ffe766;
+  --primary-400: #ffdb33;
+  --primary-500: #ffcc00;
+  --primary-600: #ffb700;
+  --primary-700: #ff9f00;
+  --primary-800: #e68a00;
+  --primary-900: #b36b00;
+  
+  /* Notebook grid variables */
+  --grid-color: #e0e0e0;
+  --grid-size: 20px;
+  
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -21,11 +39,30 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  font-family: var(--font-sans);
+  /* Notebook grid background */
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  background-position: 0 0;
+  background-color: #f8f8f0; /* Slightly off-white for paper look */
 }
 
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  /* Add a solid white background to make content more readable */
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 } 

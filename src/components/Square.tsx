@@ -1,4 +1,5 @@
 import React from 'react';
+import { Card } from "@/components/ui/Card";
 
 interface SquareProps {
   character?: string;
@@ -10,12 +11,12 @@ interface SquareProps {
  */
 const Square: React.FC<SquareProps> = ({ character = '', borderColorClass }) => {
   return (
-    <div 
-      className={`w-16 h-16 flex items-center justify-center text-2xl font-bold border-2 ${borderColorClass} rounded transition-all duration-300`}
+    <Card 
+      className={`w-16 h-16 flex items-center justify-center text-2xl font-bold ${borderColorClass} shadow-md cursor-default`}
       data-testid="square"
     >
       {character.toUpperCase()}
-    </div>
+    </Card>
   );
 };
 

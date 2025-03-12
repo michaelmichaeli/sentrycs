@@ -1,6 +1,7 @@
 import React from 'react';
 import Square from './Square';
 import { WordStatus } from '../hooks/useWordGame';
+import { Text } from "@/components/ui/Text";
 
 interface GameBoardProps {
   word: string[];
@@ -29,7 +30,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ word, status, maxLength }) => {
 
   return (
     <div className="flex flex-col items-center">
-      <h2 className="text-lg font-semibold h-8 flex items-center">Your Word</h2>
+      <Text className="text-lg font-head font-semibold h-8 flex items-center">Your Word</Text>
       <div className="flex gap-2 my-2">
         {squares.map((_, index) => (
           <Square 
@@ -39,9 +40,9 @@ const GameBoard: React.FC<GameBoardProps> = ({ word, status, maxLength }) => {
           />
         ))}
       </div>
-      <div className="text-sm text-gray-500 h-5 flex items-center">
+      <Text className="text-sm text-muted h-5 flex items-center">
         {word.length}/{maxLength} letters
-      </div>
+      </Text>
     </div>
   );
 };

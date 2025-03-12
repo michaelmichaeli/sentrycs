@@ -23,7 +23,13 @@
     /* Testing */
     "types": ["vite/client"],
     "esModuleInterop": true,
-    "allowJs": true
+    "allowJs": true,
+    
+    /* Import Alias */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src", "**/*.test.ts", "**/*.test.tsx", "jest.setup.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
