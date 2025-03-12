@@ -11,7 +11,7 @@ interface SquareProps {
 const Square: React.FC<SquareProps> = ({ character = '', borderColorClass }) => {
   return (
     <div 
-      className={`w-16 h-16 flex items-center justify-center text-2xl font-bold border-2 ${borderColorClass} rounded`}
+      className={`w-16 h-16 flex items-center justify-center text-2xl font-bold border-2 ${borderColorClass} rounded transition-all duration-300`}
       data-testid="square"
     >
       {character.toUpperCase()}

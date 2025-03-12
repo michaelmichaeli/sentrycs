@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react/pure';
 import { act } from 'react';
-import { useWordGame } from './useWordGame';
+import { useWordGame, WordStatus } from './useWordGame';
 import { checkWordExists } from '../services/dictionaryService';
 
 // Mock the dictionary service
@@ -16,7 +16,8 @@ describe('useWordGame', () => {
   test('should initialize with empty word and neutral status', () => {
     const { result } = renderHook(() => useWordGame(5));
     expect(result.current.word).toEqual([]);
-    expect(result.current.status).toBe('neutral');
+    expect(result.current.status).toBe(WordStatus.NEUTRAL);
+    expect(result.current.isLoading).toBe(false);
   });
 
   test('should add characters to the word', () => {
@@ -71,12 +72,24 @@ describe('useWordGame', () => {
       result.current.handleAddCharacter('T');
     });
     
+    expect(result.current.isLoading).toBe(false);
+    
+    let checkPromise: Promise<void>;
+    act(() => {
+      checkPromise = result.current.handleCheckWord();
+    });
+    
+    // Loading state should be true immediately after calling handleCheckWord
+    expect(result.current.isLoading).toBe(true);
+    
+    // Wait for the promise to resolve
     await act(async () => {
-      await result.current.handleCheckWord();
+      await checkPromise;
     });
     
     expect(checkWordExists).toHaveBeenCalledWith('CAT');
-    expect(result.current.status).toBe('valid');
+    expect(result.current.status).toBe(WordStatus.VALID);
+    expect(result.current.isLoading).toBe(false);
   });
 
   test('should check if word exists and set status to invalid', async () => {
@@ -89,12 +102,24 @@ describe('useWordGame', () => {
       result.current.handleAddCharacter('Z');
     });
     
+    expect(result.current.isLoading).toBe(false);
+    
+    let checkPromise: Promise<void>;
+    act(() => {
+      checkPromise = result.current.handleCheckWord();
+    });
+    
+    // Loading state should be true immediately after calling handleCheckWord
+    expect(result.current.isLoading).toBe(true);
+    
+    // Wait for the promise to resolve
     await act(async () => {
-      await result.current.handleCheckWord();
+      await checkPromise;
     });
     
     expect(checkWordExists).toHaveBeenCalledWith('XYZ');
-    expect(result.current.status).toBe('invalid');
+    expect(result.current.status).toBe(WordStatus.INVALID);
+    expect(result.current.isLoading).toBe(false);
   });
 
   test('should reset the game', () => {
@@ -110,6 +135,7 @@ describe('useWordGame', () => {
       result.current.resetGame();
     });
     expect(result.current.word).toEqual([]);
-    expect(result.current.status).toBe('neutral');
+    expect(result.current.status).toBe(WordStatus.NEUTRAL);
+    expect(result.current.isLoading).toBe(false);
   });
 }); 
