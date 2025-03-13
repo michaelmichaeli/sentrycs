@@ -11,6 +11,9 @@ const Footer = () => {
             <p className="text-gray-600">
               &copy; {currentYear} Word Game. All rights reserved.
             </p>
+            <p className="text-gray-500 text-sm mt-1">
+              Powered by <a href="https://dictionaryapi.dev/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Free Dictionary API</a>
+            </p>
           </div>
           
           <div className="flex space-x-4">

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
-import { FiHelpCircle } from "react-icons/fi";
+import { FiHelpCircle, FiHome, FiInfo } from "react-icons/fi";
 
 interface HeaderProps {
   onHelpClick: () => void;
@@ -23,8 +23,14 @@ const Header = ({ onHelpClick }: HeaderProps) => {
           <div className="flex items-center gap-4">
             {/* Desktop navigation */}
             <nav className="hidden md:flex space-x-4">
-              <Link to="/" className="hover:text-gray-200 transition-colors">Home</Link>
-              <Link to="/about" className="hover:text-gray-200 transition-colors">About</Link>
+              <Link to="/" className="hover:text-gray-200 transition-colors flex items-center gap-2">
+                <FiHome size={20} />
+                <span>Home</span>
+              </Link>
+              <Link to="/about" className="hover:text-gray-200 transition-colors flex items-center gap-2">
+                <FiInfo size={20} />
+                <span>About</span>
+              </Link>
             </nav>
 
             {/* Help button - visible on all screens */}
@@ -38,7 +44,7 @@ const Header = ({ onHelpClick }: HeaderProps) => {
             </Button>
 
             {/* Mobile menu button */}
-            <button 
+            <button
               className="md:hidden p-2 rounded focus:outline-none" 
               onClick={toggleMenu}
               aria-label="Toggle menu"
@@ -65,17 +71,19 @@ const Header = ({ onHelpClick }: HeaderProps) => {
           <nav className="md:hidden mt-3 pb-2 space-y-2">
             <Link 
               to="/" 
-              className="block py-2 px-4 hover:bg-primary-dark rounded transition-colors"
+              className="flex items-center gap-2 py-2 px-4 hover:bg-primary-dark rounded transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Home
+              <FiHome size={20} />
+              <span>Home</span>
             </Link>
             <Link 
               to="/about" 
-              className="block py-2 px-4 hover:bg-primary-dark rounded transition-colors"
+              className="flex items-center gap-2 py-2 px-4 hover:bg-primary-dark rounded transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              About
+              <FiInfo size={20} />
+              <span>About</span>
             </Link>
           </nav>
         )}
