@@ -10,7 +10,7 @@ const Card = ({ className, ...props }: ICardProps) => {
   return (
     <div
       className={cn(
-        "inline-block border-2 border-black shadow-md bg-white",
+        "inline-block border-2 border-black shadow-md bg-white/90",
         className
       )}
       {...props}
