@@ -86,6 +86,8 @@ body {
 /* Responsive typography */
 h1 {
   font-size: clamp(1.5rem, 5vw, 2.5rem);
+  letter-spacing: 2px;
+  text-shadow: 0 0 0 var(--primary-400), 0 0 0 var(--primary-400), 4px 4px 0 var(--primary-400), 4px 4px 0 var(--primary-400);
 }
 
 h2 {

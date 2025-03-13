@@ -14,15 +14,11 @@ const HelpPanel = ({ wordLength, isOpen, onClose }: HelpPanelProps) => {
   // Generate a random background color for the How-to-Play section
   const helpPanelBgColor = useMemo(() => {
     const colors = [
-      'bg-pink-400',
-      'bg-purple-400',
-      'bg-blue-400',
-      'bg-cyan-400',
-      'bg-teal-400',
-      'bg-green-400',
-      'bg-yellow-400',
-      'bg-orange-400',
-      'bg-red-400',
+      'bg-primary-300',
+      'bg-primary-400',
+      'bg-primary-500',
+      'bg-primary-600',
+      'bg-primary-700',
     ];
     const randomIndex = Math.floor(Math.random() * colors.length);
     return colors[randomIndex];

@@ -10,7 +10,7 @@ const BackgroundDecorations = () => {
         <img
           src={starsBg}
           alt=""
-          className="w-full h-full object-cover"
+          className="w-full h-full"
         />
       </div>
       
@@ -18,7 +18,7 @@ const BackgroundDecorations = () => {
       <img
         src={shootingStar}
         alt=""
-        className="absolute top-20 right-[10%]"
+        className="absolute top-20 right-[10%] rotate-180"
       />
       <img
         src={shootingStar}

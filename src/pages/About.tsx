@@ -7,6 +7,33 @@ import HelpPanel from "@/components/HelpPanel";
 import { FiExternalLink } from "react-icons/fi";
 import { SiReact, SiTypescript, SiVite, SiTailwindcss, SiRadixui } from "react-icons/si";
 
+// Add styles for shooting star
+const shootingStarStyle = `
+  absolute top-20 -left-10
+  w-4 h-0.5 bg-white
+  rounded-full
+  shadow-[0_0_0_1px_#ffffff10,0_0_0_2px_#ffffff10,0_0_20px_2px_#ffffff50]
+  animate-[shootingStar_3s_ease-in-out_infinite]
+`;
+
+// Add keyframes for shooting star animation
+const shootingStarKeyframes = `
+@keyframes shootingStar {
+  0% {
+    transform: translateX(0) scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(200px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(400px) scale(0.3);
+    opacity: 0;
+  }
+}
+`;
+
 // Add styles for code blocks
 const codeBlockStyle = "font-mono text-left bg-[#1e1e1e] text-white p-4 rounded border-2 border-black overflow-x-auto";
 const commentStyle = "text-[#6A9955]"; // green comments
@@ -21,60 +48,23 @@ interface AboutProps {
 }
 
 const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
-  // Define retro colors for accordions and titles
-  const retroColors = useMemo(() => {
-    const colors = [
-      'text-pink-600',
-      'text-purple-600',
-      'text-blue-600',
-      'text-cyan-600',
-      'text-teal-600',
-      'text-green-600',
-      'text-yellow-600',
-      'text-orange-600',
-      'text-red-600',
-    ];
-    
-    const bgColors = [
-      'bg-pink-400 hover:bg-pink-500 border-pink-600',
-      'bg-purple-400 hover:bg-purple-500 border-purple-600',
-      'bg-blue-400 hover:bg-blue-500 border-blue-600',
-      'bg-cyan-400 hover:bg-cyan-500 border-cyan-600',
-      'bg-teal-400 hover:bg-teal-500 border-teal-600',
-      'bg-green-400 hover:bg-green-500 border-green-600',
-      'bg-yellow-400 hover:bg-yellow-500 border-yellow-600',
-      'bg-orange-400 hover:bg-orange-500 border-orange-600',
-      'bg-red-400 hover:bg-red-500 border-red-600',
-    ];
-    
-    const ids = [
-      'main-title',
-      'tech-stack',
-      'features',
-      'event-system',
-      'event-registration',
-      'event-emission',
-      'listener-removal',
-      'implementation',
-      'usage'
-    ];
-    
-    const colorMap: Record<string, { text: string; bg?: string }> = {};
-    ids.forEach(id => {
-      const randomIndex = Math.floor(Math.random() * colors.length);
-      colorMap[id] = {
-        text: colors[randomIndex],
-        bg: id.includes('event') || id.includes('implementation') || id.includes('usage') 
-          ? bgColors[randomIndex] 
-          : undefined
-      };
-    });
-    
-    return colorMap;
-  }, []);
+  // Define accordion colors using our design system
+  const accordionColors = {
+    'event-registration': 'bg-primary-300 hover:bg-primary-400 border-primary-500',
+    'event-emission': 'bg-primary-400 hover:bg-primary-500 border-primary-600',
+    'listener-removal': 'bg-primary-500 hover:bg-primary-600 border-primary-700',
+    'implementation': 'bg-primary-600 hover:bg-primary-700 border-primary-800',
+    'usage': 'bg-primary-700 hover:bg-primary-800 border-primary-900'
+  };
 
   return (
     <>
+      {/* Inject keyframes */}
+      <style>{shootingStarKeyframes}</style>
+      
+      {/* Shooting star */}
+      <div className={shootingStarStyle} />
+
       {/* Help Panel */}
       <HelpPanel 
         wordLength={5}
@@ -84,20 +74,20 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
       
       <div className="flex justify-center px-2 sm:px-4">
         <div className="w-full max-w-3xl space-y-6">
-          <Text as="h1" className={`text-3xl font-bold ${retroColors['main-title'].text}`}>About Word Game</Text>
+          <Text as="h1" className="text-3xl font-bold text-black text-center">About Word Game</Text>
           
           {/* MyActionListener Card */}
           <Card className="w-full">
-            <div className="p-6 space-y-6">
-              <Text as="h2" className={`text-2xl font-bold ${retroColors['event-system'].text}`}>Event System Implementation</Text>
+            <div className="p-6 space-y-6 text-left">
+              <Text as="h2" className="text-2xl font-bold text-black">Event System Implementation</Text>
               <Text as="p">
                 The game uses a custom event system (<code className="font-mono bg-primary-100 px-1 py-0.5 rounded">MyActionListener</code>) 
                 for handling communication between components. This system follows the publisher-subscriber pattern,
                 allowing for decoupled and maintainable code.
               </Text>
 
-              <Accordion type="multiple" className="space-y-2">
-                <Accordion.Item value="event-registration" className={`border ${retroColors['event-registration'].bg}`}>
+              <Accordion type="single" collapsible className="space-y-4">
+                <Accordion.Item value="event-registration" className={`border ${accordionColors['event-registration']}`}>
                   <Accordion.Header>
                     <Text as="h3" className="font-bold">Event Registration</Text>
                   </Accordion.Header>
@@ -110,7 +100,7 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
                       <pre className={codeBlockStyle}>
                         <code>
                           <span className={commentStyle}>// Register a listener for an event</span>{'\n'}
-                          <span className={`${functionStyle}`}>actionListener</span>
+                          <span className={functionStyle}>actionListener</span>
                           <span className={punctuationStyle}>.</span>
                           <span className={functionStyle}>registerListener</span>
                           <span className={punctuationStyle}>(</span>
@@ -136,7 +126,7 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
                   </Accordion.Content>
                 </Accordion.Item>
 
-                <Accordion.Item value="event-emission" className={`border ${retroColors['event-emission'].bg}`}>
+                <Accordion.Item value="event-emission" className={`border ${accordionColors['event-emission']}`}>
                   <Accordion.Header>
                     <Text as="h3" className="font-bold">Event Emission</Text>
                   </Accordion.Header>
@@ -170,7 +160,7 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
                   </Accordion.Content>
                 </Accordion.Item>
 
-                <Accordion.Item value="listener-removal" className={`border ${retroColors['listener-removal'].bg}`}>
+                <Accordion.Item value="listener-removal" className={`border ${accordionColors['listener-removal']}`}>
                   <Accordion.Header>
                     <Text as="h3" className="font-bold">Listener Removal</Text>
                   </Accordion.Header>
@@ -195,7 +185,7 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
                   </Accordion.Content>
                 </Accordion.Item>
 
-                <Accordion.Item value="implementation" className={`border ${retroColors['implementation'].bg}`}>
+                <Accordion.Item value="implementation" className={`border ${accordionColors['implementation']}`}>
                   <Accordion.Header>
                     <Text as="h3" className="font-bold">Implementation Details</Text>
                   </Accordion.Header>
@@ -207,7 +197,7 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
                   </Accordion.Content>
                 </Accordion.Item>
 
-                <Accordion.Item value="usage" className={`border ${retroColors['usage'].bg}`}>
+                <Accordion.Item value="usage" className={`border ${accordionColors['usage']}`}>
                   <Accordion.Header>
                     <Text as="h3" className="font-bold">Usage in the Application</Text>
                   </Accordion.Header>
@@ -225,7 +215,7 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
 
           {/* Tech Stack Card */}
           <Card className="w-full p-6">
-            <Text as="h2" className={`text-2xl font-bold mb-4 text-left ${retroColors['tech-stack'].text}`}>Tech Stack</Text>
+            <Text as="h2" className="text-2xl font-bold mb-4 text-black text-left">Tech Stack</Text>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <div className="p-4 bg-primary/10 rounded-lg">
@@ -246,6 +236,7 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
                   </ul>
                 </div>
               </div>
+              
               <div className="space-y-2">
                 <div className="p-4 bg-primary/10 rounded-lg">
                   <div className="font-bold mb-2 text-left underline decoration-2">Build Tools</div>
@@ -259,6 +250,7 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
                   </ul>
                 </div>
               </div>
+              
               <div className="space-y-2">
                 <div className="p-4 bg-primary/10 rounded-lg">
                   <div className="font-bold mb-2 text-left underline decoration-2">Styling & UI</div>
@@ -278,6 +270,7 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
                   </ul>
                 </div>
               </div>
+              
               <div className="space-y-2">
                 <div className="p-4 bg-primary/10 rounded-lg">
                   <div className="font-bold mb-2 text-left underline decoration-2">Other Tools</div>
@@ -302,7 +295,7 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
 
           {/* Key Features Card */}
           <Card className="w-full p-6">
-            <Text as="h2" className={`text-2xl font-bold mb-4 text-left ${retroColors['features'].text}`}>Key Features</Text>
+            <Text as="h2" className="text-2xl font-bold mb-4 text-black text-left">Key Features</Text>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="p-4 bg-primary/10 rounded-lg text-left">
                 <div className="font-bold mb-2 text-left underline decoration-2">User Interface</div>

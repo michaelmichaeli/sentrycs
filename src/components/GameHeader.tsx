@@ -10,10 +10,6 @@ interface GameHeaderProps {
 const GameHeader = ({ isLoading, status }: GameHeaderProps) => {
   return (
     <>
-      <Text as="h1" className="text-3xl font-head font-bold mb-6">
-        Word Game
-      </Text>
-
       {/* Fixed height status message container */}
       <div className="h-6 mb-8 flex items-center justify-center">
         <StatusAlert isLoading={isLoading} status={status} />

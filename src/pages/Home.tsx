@@ -4,6 +4,7 @@ import HelpPanel from "../components/HelpPanel";
 import GameHeader from "../components/GameHeader";
 import GameControls from "../components/GameControls";
 import { Card } from "@/components/ui/Card";
+import { Text } from "@/components/ui/Text";
 
 // Define the word length as a constant for better maintainability
 const WORD_LENGTH = 5;
@@ -33,10 +34,14 @@ const Home = ({ isHelpOpen, onHelpClose }: HomeProps) => {
         onClose={onHelpClose}
       />
       
-      <div className="flex justify-center px-2 sm:px-4">
+      <div className="flex flex-col items-center px-2 sm:px-4">
+        <Text as="h1" className="text-4xl font-head font-bold mb-8">
+          Word Game
+        </Text>
+        
         <Card className="w-full max-w-2xl">
           <div className="flex flex-col items-center justify-center p-2 sm:p-4 md:p-8 relative">
-            {/* Game Header with Title and Status */}
+            {/* Game Header with Status */}
             <GameHeader isLoading={isLoading} status={status} />
 
             {/* Game Board */}

@@ -1,30 +1,17 @@
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-  
   return (
-    <footer className="bg-gray-100 py-6 mt-auto">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0">
-            <p className="text-gray-600">
-              &copy; {currentYear} Word Game. All rights reserved.
-            </p>
-            <p className="text-gray-500 text-sm mt-1">
-              Powered by <a href="https://dictionaryapi.dev/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Free Dictionary API</a>
-            </p>
-          </div>
-          
-          <div className="flex space-x-4">
-            <Link to="/" className="text-gray-600 hover:text-primary transition-colors">
-              Home
-            </Link>
-            <Link to="/about" className="text-gray-600 hover:text-primary transition-colors">
-              About
-            </Link>
-          </div>
+    <footer className="bg-black py-8">
+      <div className="container max-w-6xl mx-auto flex flex-col lg:flex-row space-y-4 lg:space-y-0 justify-between items-center">
+        <div className="flex justify-center space-x-4">
+          <a href="https://github.com/yourusername/word-game" className="text-primary-500 hover:text-primary-400">GitHub</a>
+          <Link to="/about" className="text-primary-500 hover:text-primary-400">About</Link>
+          <Link to="/" className="text-primary-500 hover:text-primary-400">Home</Link>
         </div>
+        <p className="text-gray-300 text-sm">
+          Built with <a href="https://dictionaryapi.dev/" target="_blank" rel="noopener noreferrer" className="text-primary-500 hover:text-primary-400">Free Dictionary API</a>
+        </p>
       </div>
     </footer>
   );
