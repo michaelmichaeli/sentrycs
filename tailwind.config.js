@@ -48,6 +48,8 @@ export default {
   				700: "var(--primary-700)",
   				800: "var(--primary-800)",
   				900: "var(--primary-900)",
+          DEFAULT: "var(--primary-500)",
+          dark: "var(--primary-700)",
   			},
   			secondary: {
   				DEFAULT: 'hsl(var(--secondary))',

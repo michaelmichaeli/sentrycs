@@ -29,11 +29,11 @@ const HelpPanel = ({ wordLength }: HelpPanelProps) => {
   }, []);
 
   return (
-    <div className="fixed top-4 right-4 z-50">
+    <div className="fixed top-21 right-4 z-50">
       <Card className={`p-4 shadow-md w-64 border-2 border-black ${helpPanelBgColor} text-white transition-all duration-300 ease-in-out`}>
         <div className="flex gap-4 items-center mb-4 ">
-          <FiHelpCircle />
-          <Text className="text-xl font-head font-semibold">
+          <FiHelpCircle color="black" />
+          <Text className="text-black text-md font-head font-semibold">
             How to Play
           </Text>
         </div>
@@ -44,7 +44,7 @@ const HelpPanel = ({ wordLength }: HelpPanelProps) => {
           onValueChange={setOpenAccordion}
         >
           <Accordion.Item value="instructions">
-            <Accordion.Header className="text-white">
+            <Accordion.Header className="text-sm text-black">
               Instructions
             </Accordion.Header>
             <Accordion.Content>
