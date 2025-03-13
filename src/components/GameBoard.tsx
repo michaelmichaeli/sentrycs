@@ -30,7 +30,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ word, status, maxLength }) => {
 
   return (
     <div className="flex flex-col items-center">
-      <Text className="text-lg font-head font-semibold h-8 flex items-center">Your Word</Text>
+      <Text className="text-sm text-muted h-8 flex items-center">Your Word</Text>
       <div className="flex gap-2 my-2">
         {squares.map((_, index) => (
           <Square 

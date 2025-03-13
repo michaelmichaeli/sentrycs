@@ -12,7 +12,7 @@ function App() {
 			<Layout onHelpClick={() => setIsHelpOpen(true)}>
 				<Routes>
 					<Route path="/" element={<Home isHelpOpen={isHelpOpen} onHelpClose={() => setIsHelpOpen(false)} />} />
-					<Route path="/about" element={<About />} />
+					<Route path="/about" element={<About isHelpOpen={isHelpOpen} onHelpClose={() => setIsHelpOpen(false)} />} />
 				</Routes>
 			</Layout>
 		</Router>

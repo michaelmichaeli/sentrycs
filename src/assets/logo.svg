@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="50" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with primary color -->
+  <rect width="200" height="50" rx="8" fill="var(--primary, #FFD600)"/>
+  
+  <!-- Inner shadow effect -->
+  <rect x="4" y="4" width="192" height="42" rx="6" fill="var(--primary-dark, #FFB800)" filter="url(#innerShadow)"/>
+  
+  <defs>
+    <filter id="innerShadow" x="0" y="0" width="200" height="50" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="1"/>
+      <feGaussianBlur stdDeviation="1"/>
+      <feComposite in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.25 0"/>
+    </filter>
+    <filter id="textEffect" x="-2" y="-2" width="204" height="54">
+      <feMorphology operator="dilate" radius="2" in="SourceAlpha" result="thicken"/>
+      <feGaussianBlur in="thicken" stdDeviation="1" result="blurred"/>
+      <feFlood flood-color="rgba(0,0,0,0.25)" result="glowColor"/>
+      <feComposite in="glowColor" in2="blurred" operator="in" result="softGlow"/>
+      <feMerge>
+        <feMergeNode in="softGlow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Main text with retro effect -->
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" 
+        font-family="Archivo Black, sans-serif" font-size="28" font-weight="900"
+        fill="black" filter="url(#textEffect)" style="text-transform: uppercase;">
+    <tspan>WORD</tspan>
+    <tspan dx="8">GAME</tspan>
+  </text>
+  
+  <!-- Decorative elements -->
+  <path d="M 20,25 L 35,25" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 165,25 L 180,25" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Retro stars -->
+  <path d="M 45,15 L 48,18 L 45,21 L 42,18 Z" fill="black"/>
+  <path d="M 155,15 L 158,18 L 155,21 L 152,18 Z" fill="black"/>
+</svg> 
