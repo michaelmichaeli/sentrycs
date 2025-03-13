@@ -6,10 +6,10 @@ const buttonVariants = cva("font-head transition-all outline-none", {
   variants: {
     variant: {
       default:
-        "shadow-md hover:shadow-xs bg-primary-400 text-black border-2 border-black hover:bg-primary-500 disabled:shadow-none disabled:hover:shadow-none disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:cursor-not-allowed",
+        "shadow-md hover:shadow-xs bg-primary-400 text-black border-2 border-black hover:bg-primary-500",
       outline:
-        "shadow-md hover:shadow-xs bg-transparent text-black border-2 border-black disabled:shadow-none disabled:hover:shadow-none disabled:bg-gray-200 disabled:hover:bg-gray-200 disabled:cursor-not-allowed",
-      link: "bg-transparent text-black hover:underline disabled:no-underline disabled:cursor-not-allowed",
+        "shadow-md hover:shadow-xs bg-transparent text-black border-2 border-black",
+      link: "bg-transparent text-black hover:underline",
     },
     size: {
       sm: "px-4 py-1 text-sm",

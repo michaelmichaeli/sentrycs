@@ -8,7 +8,7 @@
   
   /* Theme colors */
   --muted: #606067;
-  --background: #fff;
+  --background: #f8f8f0;
   --foreground: #000;
   --primary-50: #fffef0;
   --primary-100: #fffac2;
@@ -35,8 +35,6 @@
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   font-family: var(--font-sans);
@@ -46,15 +44,15 @@ body {
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
   background-size: var(--grid-size) var(--grid-size);
   background-position: 0 0;
-  background-color: #f8f8f0; /* Slightly off-white for paper look */
+  background-color: var(--background);
 }
 
 #root {
   width: 100%;
+  min-height: 100vh;
   margin: 0 auto;
   text-align: center;
-  /* Add a solid white background to make content more readable */
-  background-color: #ffffff;
+  background-color: transparent;
 }
 
 @layer base {
@@ -62,7 +60,7 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
   }
 }
 

@@ -12,7 +12,7 @@ interface SquareProps {
 const Square: React.FC<SquareProps> = ({ character = '', borderColorClass }) => {
   return (
     <Card 
-      className={`w-16 h-16 flex items-center justify-center text-2xl font-bold ${borderColorClass} shadow-md cursor-default`}
+      className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center text-xl sm:text-2xl font-bold ${borderColorClass} shadow-md cursor-default`}
       data-testid="square"
     >
       {character.toUpperCase()}
