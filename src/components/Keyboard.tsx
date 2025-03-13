@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { FiDelete } from 'react-icons/fi';
 import { ImSpinner8 } from 'react-icons/im';
 import { Button } from "@/components/ui/Button";
+import { useKeyboard } from '@/hooks/useKeyboard';
 
 interface KeyboardProps {
   onCharacterClick: (char: string) => void;
@@ -33,6 +34,18 @@ const Keyboard: React.FC<KeyboardProps> = ({
     ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
     ['Z', 'X', 'C', 'V', 'B', 'N', 'M']
   ];
+
+  // Use keyboard hook for handling keyboard events and getting disabled states
+  const { isEnterDisabled, isBackspaceDisabled } = useKeyboard({
+    onCharacterClick,
+    onBackspaceClick,
+    onEnterClick,
+    onResetGame,
+    wordIsFull,
+    isLoading,
+    disableKeys,
+    currentWordLength
+  });
 
   // Define retro colors for keys
   const retroColors = useMemo(() => {
@@ -66,12 +79,6 @@ const Keyboard: React.FC<KeyboardProps> = ({
       onCharacterClick(char);
     }
   };
-
-  // Determine if Enter button should be disabled
-  const isEnterDisabled = isLoading || !wordIsFull;
-
-  // Determine if Backspace button should be disabled - when loading or when there are 0 letters
-  const isBackspaceDisabled = isLoading || currentWordLength === 0;
 
   // Get key color based on whether keys are disabled
   const getKeyColor = (char: string) => {
