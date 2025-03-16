@@ -4,9 +4,7 @@ import GameHeader from "../components/GameHeader";
 import GameControls from "../components/GameControls";
 import { Card } from "@/components/ui/Card";
 import { Text } from "@/components/ui/Text";
-
-// Define the word length as a constant for better maintainability
-export const WORD_LENGTH = 5;
+import { WORD_LENGTH } from "../constants";
 
 interface HomeProps {}
 
