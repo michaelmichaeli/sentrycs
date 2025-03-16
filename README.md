@@ -33,7 +33,7 @@ A fun and interactive word game where you can challenge your vocabulary! Built w
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/word-game.git
+git clone https://github.com/michaelmichaeli/word-game.git
 cd word-game
 ```
 

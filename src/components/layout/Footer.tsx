@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="bg-black py-8">
       <div className="container max-w-6xl mx-auto flex flex-col lg:flex-row space-y-4 lg:space-y-0 justify-between items-center">
         <div className="flex justify-center space-x-4">
-          <a href="https://github.com/yourusername/word-game" className="text-primary-500 hover:text-primary-400">GitHub</a>
+          <a href="https://github.com/michaelmichaeli/word-game" className="text-primary-500 hover:text-primary-400">GitHub</a>
           <Link to="/about" className="text-primary-500 hover:text-primary-400" data-discover>About</Link>
           <Link to="/" className="text-primary-500 hover:text-primary-400" data-discover>Home</Link>
         </div>
