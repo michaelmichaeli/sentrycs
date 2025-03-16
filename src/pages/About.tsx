@@ -4,8 +4,12 @@ import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { useMemo } from "react";
 import HelpPanel from "@/components/HelpPanel";
-import { FiExternalLink } from "react-icons/fi";
+import { FiExternalLink, FiArrowLeft, FiMonitor, FiSmartphone, FiKey, FiCode, FiCpu, FiTerminal, FiPackage, FiLayers, FiTool } from "react-icons/fi";
 import { SiReact, SiTypescript, SiVite, SiTailwindcss, SiRadixui } from "react-icons/si";
+import { BsKeyboard, BsEyeFill, BsSpeedometer, BsTools } from "react-icons/bs";
+import { IoGameController } from "react-icons/io5";
+import { MdEventNote, MdEventAvailable, MdEventBusy } from "react-icons/md";
+import { AiOutlineApi } from "react-icons/ai";
 
 // Add styles for shooting star
 const shootingStarStyle = `
@@ -79,17 +83,24 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
           {/* MyActionListener Card */}
           <Card className="w-full">
             <div className="p-6 space-y-6 text-left">
-              <Text as="h2" className="text-2xl font-bold text-black">Event System Implementation</Text>
+              <div className="flex items-center gap-2">
+                <MdEventNote size={24} />
+                <Text as="h2" className="text-2xl font-bold text-black">Event System Implementation</Text>
+              </div>
+              
               <Text as="p">
                 The game uses a custom event system (<code className="font-mono bg-primary-100 px-1 py-0.5 rounded">MyActionListener</code>) 
                 for handling communication between components. This system follows the publisher-subscriber pattern,
                 allowing for decoupled and maintainable code.
               </Text>
 
-              <Accordion type="single" collapsible className="space-y-4">
-                <Accordion.Item value="event-registration" className={`border ${accordionColors['event-registration']}`}>
+              <Accordion type="single" collapsible  className="space-y-4">
+                <Accordion.Item value="event-registration" className={accordionColors['event-registration']}>
                   <Accordion.Header>
-                    <Text as="h3" className="font-bold">Event Registration</Text>
+                    <div className="flex items-center gap-2">
+                      <MdEventAvailable size={20} />
+                      <Text as="h3" className="font-bold">Event Registration</Text>
+                    </div>
                   </Accordion.Header>
                   <Accordion.Content>
                     <div className="space-y-4">
@@ -128,7 +139,10 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
 
                 <Accordion.Item value="event-emission" className={`border ${accordionColors['event-emission']}`}>
                   <Accordion.Header>
-                    <Text as="h3" className="font-bold">Event Emission</Text>
+                    <div className="flex items-center gap-2">
+                      <AiOutlineApi size={20} />
+                      <Text as="h3" className="font-bold">Event Emission</Text>
+                    </div>
                   </Accordion.Header>
                   <Accordion.Content>
                     <div className="space-y-4">
@@ -162,7 +176,10 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
 
                 <Accordion.Item value="listener-removal" className={`border ${accordionColors['listener-removal']}`}>
                   <Accordion.Header>
-                    <Text as="h3" className="font-bold">Listener Removal</Text>
+                    <div className="flex items-center gap-2">
+                      <MdEventBusy size={20} />
+                      <Text as="h3" className="font-bold">Listener Removal</Text>
+                    </div>
                   </Accordion.Header>
                   <Accordion.Content>
                     <div className="space-y-4">
@@ -187,7 +204,10 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
 
                 <Accordion.Item value="implementation" className={`border ${accordionColors['implementation']}`}>
                   <Accordion.Header>
-                    <Text as="h3" className="font-bold">Implementation Details</Text>
+                    <div className="flex items-center gap-2">
+                      <FiCode size={20} />
+                      <Text as="h3" className="font-bold">Implementation Details</Text>
+                    </div>
                   </Accordion.Header>
                   <Accordion.Content>
                     <Text as="p">
@@ -199,7 +219,10 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
 
                 <Accordion.Item value="usage" className={`border ${accordionColors['usage']}`}>
                   <Accordion.Header>
-                    <Text as="h3" className="font-bold">Usage in the Application</Text>
+                    <div className="flex items-center gap-2">
+                      <IoGameController size={20} />
+                      <Text as="h3" className="font-bold">Usage in the Application</Text>
+                    </div>
                   </Accordion.Header>
                   <Accordion.Content>
                     <Text as="p">
@@ -215,11 +238,17 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
 
           {/* Tech Stack Card */}
           <Card className="w-full p-6">
-            <Text as="h2" className="text-2xl font-bold mb-4 text-black text-left">Tech Stack</Text>
+            <div className="flex items-center gap-2 mb-4">
+              <FiLayers size={24} />
+              <Text as="h2" className="text-2xl font-bold text-black text-left">Tech Stack</Text>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <div className="p-4 bg-primary/10 rounded-lg">
-                  <div className="font-bold mb-2 text-left underline decoration-2">Frontend Framework</div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <FiPackage size={20} />
+                    <div className="font-bold text-left underline decoration-2">Frontend Framework</div>
+                  </div>
                   <ul className="space-y-2">
                     <li className="flex items-center gap-2">
                       <SiReact className="text-[#61DAFB]" size={20} />
@@ -239,7 +268,10 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
               
               <div className="space-y-2">
                 <div className="p-4 bg-primary/10 rounded-lg">
-                  <div className="font-bold mb-2 text-left underline decoration-2">Build Tools</div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <FiTool size={20} />
+                    <div className="font-bold text-left underline decoration-2">Build Tools</div>
+                  </div>
                   <ul className="space-y-2">
                     <li className="flex items-center gap-2">
                       <SiVite className="text-[#646CFF]" size={20} />
@@ -253,7 +285,10 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
               
               <div className="space-y-2">
                 <div className="p-4 bg-primary/10 rounded-lg">
-                  <div className="font-bold mb-2 text-left underline decoration-2">Styling & UI</div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <BsTools size={20} />
+                    <div className="font-bold text-left underline decoration-2">Styling & UI</div>
+                  </div>
                   <ul className="space-y-2">
                     <li className="flex items-center gap-2">
                       <SiTailwindcss className="text-[#38B2AC]" size={20} />
@@ -273,7 +308,10 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
               
               <div className="space-y-2">
                 <div className="p-4 bg-primary/10 rounded-lg">
-                  <div className="font-bold mb-2 text-left underline decoration-2">Other Tools</div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <FiPackage size={20} />
+                    <div className="font-bold text-left underline decoration-2">Other Tools</div>
+                  </div>
                   <ul className="space-y-2">
                     <li className="flex items-center gap-2">
                       <img src="https://reactrouter.com/favicon.ico" alt="" className="w-5 h-5" />
@@ -294,50 +332,125 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
           </Card>
 
           {/* Key Features Card */}
-          <Card className="w-full p-6">
-            <Text as="h2" className="text-2xl font-bold mb-4 text-black text-left">Key Features</Text>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 bg-primary/10 rounded-lg text-left">
-                <div className="font-bold mb-2 text-left underline decoration-2">User Interface</div>
-                <ul className="list-disc pl-6 space-y-1 text-left">
-                  <li className="text-left">Modern, responsive design</li>
-                  <li className="text-left">Retro-inspired aesthetics</li>
-                  <li className="text-left">Mobile-first approach</li>
-                  <li className="text-left">Accessible components</li>
-                </ul>
+          <Card className="w-full">
+            <div className="p-6 space-y-6">
+              <div className="flex items-center gap-2">
+                <IoGameController size={24} />
+                <Text as="h2" className="text-2xl font-bold text-black">Key Features</Text>
               </div>
-              <div className="p-4 bg-primary/10 rounded-lg text-left">
-                <div className="font-bold mb-2 text-left underline decoration-2">Game Features</div>
-                <ul className="list-disc pl-6 space-y-1 text-left">
-                  <li className="text-left">Real-time word validation</li>
-                  <li className="text-left">Visual feedback system</li>
-                  <li className="text-left">Keyboard support</li>
-                  <li className="text-left">Progress tracking</li>
-                </ul>
-              </div>
-              <div className="p-4 bg-primary/10 rounded-lg text-left">
-                <div className="font-bold mb-2 text-left underline decoration-2">Technical Features</div>
-                <ul className="list-disc pl-6 space-y-1 text-left">
-                  <li className="text-left">Type-safe development</li>
-                  <li className="text-left">Custom event system</li>
-                  <li className="text-left">Component-based architecture</li>
-                  <li className="text-left">Efficient state management</li>
-                </ul>
-              </div>
-              <div className="p-4 bg-primary/10 rounded-lg text-left">
-                <div className="font-bold mb-2 text-left underline decoration-2">Developer Experience</div>
-                <ul className="list-disc pl-6 space-y-1 text-left">
-                  <li className="text-left">Hot module replacement</li>
-                  <li className="text-left">TypeScript integration</li>
-                  <li className="text-left">Modern build system</li>
-                  <li className="text-left">Developer tools support</li>
-                </ul>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-4 bg-primary/10 rounded-lg">
+                  <div className="flex items-center gap-2 mb-2">
+                    <FiMonitor size={20} />
+                    <div className="font-bold underline decoration-2">User Interface</div>
+                  </div>
+                  <ul className="list-disc pl-6 space-y-1">
+                    <li className="flex items-center gap-2">
+                      <FiSmartphone size={16} />
+                      <span>Modern, responsive design</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <BsEyeFill size={16} />
+                      <span>Retro-inspired aesthetics</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FiSmartphone size={16} />
+                      <span>Mobile-first approach</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FiKey size={16} />
+                      <span>Accessible components</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="p-4 bg-primary/10 rounded-lg">
+                  <div className="flex items-center gap-2 mb-2">
+                    <IoGameController size={20} />
+                    <div className="font-bold underline decoration-2">Game Features</div>
+                  </div>
+                  <ul className="list-disc pl-6 space-y-1">
+                    <li className="flex items-center gap-2">
+                      <BsSpeedometer size={16} />
+                      <span>Real-time word validation</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <BsEyeFill size={16} />
+                      <span>Visual feedback system</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <BsKeyboard size={16} />
+                      <span>Keyboard support</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <BsSpeedometer size={16} />
+                      <span>Progress tracking</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="p-4 bg-primary/10 rounded-lg">
+                  <div className="flex items-center gap-2 mb-2">
+                    <FiCode size={20} />
+                    <div className="font-bold underline decoration-2">Technical Features</div>
+                  </div>
+                  <ul className="list-disc pl-6 space-y-1">
+                    <li className="flex items-center gap-2">
+                      <FiCpu size={16} />
+                      <span>Type-safe development</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <MdEventNote size={16} />
+                      <span>Custom event system</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FiCode size={16} />
+                      <span>Component-based architecture</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FiCpu size={16} />
+                      <span>Efficient state management</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="p-4 bg-primary/10 rounded-lg">
+                  <div className="flex items-center gap-2 mb-2">
+                    <BsTools size={20} />
+                    <div className="font-bold underline decoration-2">Developer Experience</div>
+                  </div>
+                  <ul className="list-disc pl-6 space-y-1">
+                    <li className="flex items-center gap-2">
+                      <FiTerminal size={16} />
+                      <span>Hot module replacement</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <SiTypescript size={16} />
+                      <span>TypeScript integration</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <BsTools size={16} />
+                      <span>Modern build system</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FiTerminal size={16} />
+                      <span>Developer tools support</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </Card>
 
           <div className="flex justify-center mt-8 w-full">
-            <Button variant="default" size="lg" onClick={() => window.history.back()}>
+            <Button 
+              variant="default" 
+              size="lg" 
+              onClick={() => window.history.back()}
+              className="flex items-center gap-2"
+            >
+              <FiArrowLeft size={20} />
               Back to Game
             </Button>
           </div>
