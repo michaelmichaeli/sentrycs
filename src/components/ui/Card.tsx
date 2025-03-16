@@ -11,7 +11,6 @@ export interface ICardProps extends HTMLAttributes<HTMLDivElement> {
   rounded?: BorderRadius;
 }
 
-// Simpler props for child components
 type CardChildProps = HTMLAttributes<HTMLDivElement> & {
   className?: string;
 };

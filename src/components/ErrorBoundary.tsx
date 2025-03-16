@@ -3,7 +3,6 @@ import { FiX } from "react-icons/fi";
 import { ErrorBoundaryProps, ErrorBoundaryState, ErrorDialogProps } from "@/types";
 import { ErrorInfo } from "react";
 
-// Create a global error handler that can be accessed from anywhere
 class ErrorHandler {
 	private static instance: ErrorHandler;
 	private errorBoundaryComponent: ErrorBoundary | null = null;
@@ -30,10 +29,8 @@ class ErrorHandler {
 	}
 }
 
-// Export the singleton instance
 export const globalErrorHandler = ErrorHandler.getInstance();
 
-// Custom Error Dialog component that matches the screenshot exactly
 const ErrorDialog = ({
 	error,
 	open,
@@ -43,18 +40,14 @@ const ErrorDialog = ({
 
 	return (
 		<div className="fixed inset-0 z-50 flex items-center justify-center">
-			{/* Backdrop */}
 			<div className="fixed inset-0 bg-black/50" onClick={onClose} />
 
-			{/* Dialog */}
 			<div className="bg-white relative z-10 w-[450px] shadow-lg overflow-hidden">
-				{/* Red header */}
 				<div className="bg-red-100 border-t-4 border-red-500 flex items-center justify-between p-3">
 					<h2 className="text-red-700 text-xl font-bold">
 						Something went wrong
 					</h2>
 
-					{/* X button with correct project styling */}
 					<button
 						className="w-8 h-8 flex items-center justify-center font-head transition-all outline-none border-2 border-black shadow-md hover:shadow-xs bg-white"
 						onClick={onClose}
@@ -63,7 +56,6 @@ const ErrorDialog = ({
 					</button>
 				</div>
 
-				{/* Content */}
 				<div className="p-4">
 					<p className="text-red-600 mb-4">
 						The application encountered an error but is still running.
@@ -101,22 +93,18 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 			errorInfo: null,
 		};
 
-		// Register this component with the global error handler
 		globalErrorHandler.setErrorBoundary(this);
 	}
 
 	static getDerivedStateFromError(error: Error) {
-		// Update state so the next render will show the fallback UI
 		return { hasError: true, error };
 	}
 
 	componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-		// Log the error to the console
 		console.error("Error caught by ErrorBoundary:", error, errorInfo);
 		this.setState({ errorInfo });
 	}
 
-	// Method to handle errors in event handlers and async code
 	handleError = (error: Error) => {
 		this.setState({
 			hasError: true,
@@ -124,7 +112,6 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 		});
 	};
 
-	// Method to reset the error state
 	resetError = () => {
 		this.setState({
 			hasError: false,
@@ -147,35 +134,28 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 	}
 }
 
-// Simple hook to access the global error handler
 export const useErrorHandler = () => {
 	return (error: Error) => {
 		globalErrorHandler.handleError(error);
 	};
 };
 
-// Create a wrapper for action handlers that catches errors
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const withErrorHandling = <T extends (...args: any[]) => any>(
 	fn: T
 ): T => {
-	// Using 'as T' to maintain the original function signature
 	return ((...args: Parameters<T>): ReturnType<T> => {
 		try {
 			return fn(...args);
 		} catch (error) {
 			globalErrorHandler.handleError(error instanceof Error ? error : new Error(String(error)));
-			// We need to return something that matches ReturnType<T>, but we can't know what that is
-			// This is a compromise - in practice, after an error the return value shouldn't matter
 			return undefined as unknown as ReturnType<T>;
 		}
 	}) as T;
 };
 
-// Hook to set up global error handlers in a React-friendly way
 export const useGlobalErrorHandlers = () => {
 	useEffect(() => {
-		// Set up handlers for window errors and unhandled promise rejections
 		const handleWindowError = (event: ErrorEvent) => {
 			event.preventDefault();
 			globalErrorHandler.handleError(event.error || new Error(event.message));
@@ -191,11 +171,9 @@ export const useGlobalErrorHandlers = () => {
 			globalErrorHandler.handleError(error);
 		};
 
-		// Add event listeners
 		window.addEventListener("error", handleWindowError);
 		window.addEventListener("unhandledrejection", handlePromiseRejection);
 
-		// Clean up when component unmounts
 		return () => {
 			window.removeEventListener("error", handleWindowError);
 			window.removeEventListener("unhandledrejection", handlePromiseRejection);
@@ -203,13 +181,11 @@ export const useGlobalErrorHandlers = () => {
 	}, []);
 };
 
-// Create a provider component that's simpler and doesn't modify the component tree
 export const ErrorBoundaryProvider = ({
 	children,
 }: {
 	children: ReactNode;
 }) => {
-	// Set up global error handlers
 	useGlobalErrorHandlers();
 
 	return <ErrorBoundary>{children}</ErrorBoundary>;

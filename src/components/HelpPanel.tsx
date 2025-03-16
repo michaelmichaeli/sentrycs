@@ -18,7 +18,6 @@ import { Button } from "@/components/ui/Button";
 import { HelpPanelProps } from "@/types";
 
 const HelpPanel = ({ wordLength, isOpen, onClose }: HelpPanelProps) => {
-  // Generate a random background color for the How-to-Play section
   const helpPanelBgColor = useMemo(() => {
     const colors = [
       'bg-primary-300',
@@ -92,7 +91,6 @@ const HelpPanel = ({ wordLength, isOpen, onClose }: HelpPanelProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="p-0 border-2 border-black shadow-lg" hideCloseButton>
-        {/* Custom Header with colored background */}
         <div className={`flex items-center justify-between p-4 ${helpPanelBgColor} border-b-2 border-black`}>
           <DialogTitle asChild>
             <Text className="text-black font-head font-semibold">
@@ -109,7 +107,6 @@ const HelpPanel = ({ wordLength, isOpen, onClose }: HelpPanelProps) => {
           </Button>
         </div>
         
-        {/* Content */}
         <div className="p-4 bg-white">
           <InstructionsList />
         </div>

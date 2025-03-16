@@ -28,5 +28,5 @@ export type CardVariant = 'default' | 'flat' | 'interactive';
 // Padding sizes
 export type PaddingSize = 'none' | 'sm' | 'md' | 'lg';
 
-// Border radius - matching the options available in cardVariants
+// Border radius
 export type BorderRadius = 'none' | 'sm' | 'md' | 'lg'; 

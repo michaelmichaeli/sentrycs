@@ -6,7 +6,6 @@ import { AiOutlineApi } from "react-icons/ai";
 import { FiCode } from "react-icons/fi";
 import { IoGameController } from "react-icons/io5";
 
-// Add styles for code blocks
 const codeBlockStyle = "font-mono text-left bg-[#1e1e1e] text-white p-4 rounded border-2 border-black overflow-x-auto";
 const commentStyle = "text-[#6A9955]"; // green comments
 const stringStyle = "text-[#CE9178]";  // orange strings
@@ -15,7 +14,6 @@ const functionStyle = "text-[#DCDCAA]"; // yellow function names
 const punctuationStyle = "text-[#D4D4D4]"; // light gray punctuation
 
 export const EventSystemSection = () => {
-  // Define accordion colors using our design system
   const accordionColors = {
     'event-registration': 'bg-primary-300 hover:bg-primary-400 border-primary-500',
     'event-emission': 'bg-primary-400 hover:bg-primary-500 border-primary-600',

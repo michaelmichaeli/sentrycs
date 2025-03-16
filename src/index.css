@@ -38,7 +38,6 @@ body {
   min-width: 320px;
   min-height: 100vh;
   font-family: var(--font-sans);
-  /* Notebook grid background */
   background-image:
     linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
@@ -64,11 +63,9 @@ body {
   }
 }
 
-/* Mobile responsiveness improvements */
 @media (max-width: 768px) {
   body {
     padding: 0;
-    /* Smaller grid for mobile */
     --grid-size: 15px;
   }
   
@@ -77,13 +74,11 @@ body {
   }
 }
 
-/* Custom utility classes */
 .prose pre {
   max-width: 100%;
   overflow-x: auto;
 }
 
-/* Responsive typography */
 h1 {
   font-size: clamp(1.5rem, 5vw, 2.5rem);
   letter-spacing: 2px;
@@ -98,7 +93,6 @@ h3 {
   font-size: clamp(1.1rem, 3vw, 1.75rem);
 }
 
-/* Ensure buttons are easily tappable on mobile */
 button, 
 .button,
 [role="button"] {

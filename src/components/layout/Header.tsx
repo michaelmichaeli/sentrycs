@@ -24,7 +24,6 @@ const Header = () => {
 						</Link>
 
 						<div className="flex items-center gap-4">
-							{/* Desktop navigation */}
 							<nav className="hidden md:flex space-x-4">
 								<Link
 									to="/"
@@ -50,7 +49,6 @@ const Header = () => {
 								</Link>
 							</nav>
 
-							{/* Help button - visible on all screens */}
 							<Button
 								variant="outline"
 								size="md"
@@ -61,7 +59,6 @@ const Header = () => {
 								<span className="hidden md:inline">How to Play</span>
 							</Button>
 
-							{/* Mobile menu button */}
 							<button
 								className="md:hidden p-2 rounded focus:outline-none border-2 border-black"
 								onClick={toggleMenu}
@@ -94,7 +91,6 @@ const Header = () => {
 						</div>
 					</div>
 
-					{/* Mobile navigation */}
 					{isMenuOpen && (
 						<nav className="md:hidden mt-3 pb-2 space-y-2">
 							<Link
@@ -117,7 +113,6 @@ const Header = () => {
 					)}
 				</div>
 			</header>
-			{/* Help Panel */}
 			<HelpPanel
 				wordLength={WORD_LENGTH}
 				isOpen={isHelpOpen}

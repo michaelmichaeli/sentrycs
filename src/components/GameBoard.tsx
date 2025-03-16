@@ -3,14 +3,9 @@ import Square from './Square';
 import { GameBoardProps, WordStatus } from '@/types';
 import { Text } from "@/components/ui/Text";
 
-/**
- * GameBoard component displays the squares for the word game
- */
 const GameBoard: React.FC<GameBoardProps> = ({ word, status, maxLength }) => {
-  // Create an array of squares based on the maxLength
   const squares = Array(maxLength).fill(null);
 
-  // Determine the border color based on status
   const getBorderColor = () => {
     switch (status) {
       case WordStatus.VALID:

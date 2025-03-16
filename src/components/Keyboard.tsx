@@ -4,9 +4,6 @@ import { Button } from "@/components/ui/Button";
 import { useKeyboard } from '@/hooks/useKeyboard';
 import { KeyboardProps } from '@/types';
 
-/**
- * Keyboard component displays a virtual keyboard for the word game
- */
 const Keyboard: React.FC<KeyboardProps> = ({ 
   onCharacterClick, 
   onBackspaceClick, 
@@ -17,14 +14,12 @@ const Keyboard: React.FC<KeyboardProps> = ({
   disableKeys = false,
   currentWordLength = 0
 }) => {
-  // Define keyboard rows
   const rows = useMemo(() => [
     ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
     ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
     ['Z', 'X', 'C', 'V', 'B', 'N', 'M']
   ], []);
 
-  // Use keyboard hook for handling keyboard events and getting disabled states
   const { isEnterDisabled, isBackspaceDisabled } = useKeyboard({
     onCharacterClick,
     onBackspaceClick,
@@ -36,7 +31,6 @@ const Keyboard: React.FC<KeyboardProps> = ({
     currentWordLength
   });
 
-  // Define retro colors for keys
   const retroColors = useMemo(() => {
     const colors = [
       'bg-pink-400 hover:bg-pink-500',
@@ -50,7 +44,6 @@ const Keyboard: React.FC<KeyboardProps> = ({
       'bg-red-400 hover:bg-red-500',
     ];
     
-    // Create a map of characters to colors
     const colorMap: Record<string, string> = {};
     const allChars = rows.flat();
     
@@ -62,14 +55,12 @@ const Keyboard: React.FC<KeyboardProps> = ({
     return colorMap;
   }, [rows]);
 
-  // Handle character button click
   const handleCharClick = (char: string) => {
     if (!wordIsFull && !disableKeys) {
       onCharacterClick(char);
     }
   };
 
-  // Get key color based on whether keys are disabled
   const getKeyColor = (char: string) => {
     if (disableKeys) {
       return 'bg-gray-200 hover:bg-gray-200 cursor-not-allowed shadow-md hover:shadow-md';
@@ -77,10 +68,8 @@ const Keyboard: React.FC<KeyboardProps> = ({
     return retroColors[char];
   };
 
-  // Common disabled style for special buttons
   const disabledStyle = 'bg-gray-200 hover:bg-gray-200 cursor-not-allowed shadow-md hover:shadow-md';
 
-  // Get Enter button style based on disabled state
   const getEnterButtonStyle = () => {
     if (isEnterDisabled) {
       return disabledStyle;
@@ -88,7 +77,6 @@ const Keyboard: React.FC<KeyboardProps> = ({
     return 'bg-emerald-500 hover:bg-emerald-600 shadow-md';
   };
 
-  // Get Backspace button style based on disabled state
   const getBackspaceButtonStyle = () => {
     if (isBackspaceDisabled) {
       return disabledStyle;
@@ -96,7 +84,6 @@ const Keyboard: React.FC<KeyboardProps> = ({
     return 'bg-rose-500 hover:bg-rose-600 shadow-md';
   };
 
-  // Get Reset button style based on disabled state
   const getResetButtonStyle = () => {
     if (isLoading || currentWordLength === 0) {
       return disabledStyle;
@@ -106,7 +93,6 @@ const Keyboard: React.FC<KeyboardProps> = ({
 
   return (
     <div className="flex flex-col items-center gap-5 w-full max-w-3xl px-1">
-      {/* First row */}
       <div className="flex gap-1 justify-center w-full h-8">
         {rows[0].map((char) => (
           <div key={char} className="flex-1 min-w-0 h-full">
@@ -122,7 +108,6 @@ const Keyboard: React.FC<KeyboardProps> = ({
         ))}
       </div>
 
-      {/* Second row - slightly indented */}
       <div className="flex gap-1 justify-center w-[95%] h-8">
         {rows[1].map((char) => (
           <div key={char} className="flex-1 min-w-0 h-full">
@@ -138,7 +123,6 @@ const Keyboard: React.FC<KeyboardProps> = ({
         ))}
       </div>
 
-      {/* Third row with ENTER and Backspace */}
       <div className="flex gap-1 justify-center w-full h-8">
         <div className="w-[18%] h-full">
           <Button
@@ -179,7 +163,6 @@ const Keyboard: React.FC<KeyboardProps> = ({
         </div>
       </div>
 
-      {/* Fourth row - Reset Game button */}
       <div className="flex justify-center w-[80%] h-8 mt-1">
         <Button
           onClick={onResetGame}

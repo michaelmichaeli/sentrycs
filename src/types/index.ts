@@ -10,7 +10,6 @@ export enum ActionType {
   RESET_GAME = 'RESET_GAME'
 }
 
-// Word status types from useWordGame
 export enum WordStatus {
   VALID = 'valid',
   INVALID = 'invalid',
@@ -60,11 +59,6 @@ export interface KeyboardProps {
   disableKeys?: boolean;
   currentWordLength?: number;
 }
-
-// Page Props
-export interface HomeProps {}
-
-export interface AboutProps {}
 
 // Layout Props
 export interface LayoutProps {

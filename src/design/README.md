@@ -30,8 +30,8 @@ import { TextVariant, ButtonVariant } from '@/design';
 
 // Type-safe component props
 interface MyComponentProps {
-  textVariant: TextVariant;  // Will only accept 'default', 'muted', or 'primary'
-  buttonVariant: ButtonVariant;  // Will only accept 'default', 'outline', or 'link'
+  textVariant: TextVariant;
+  buttonVariant: ButtonVariant;
 }
 ```
 
@@ -52,17 +52,6 @@ const MyComponent = ({ className }) => {
     </button>
   );
 };
-```
-
-### Using Utility Functions
-
-```tsx
-import { cn, pxToRem, fluidType } from '@/design/utils';
-
-// Example usage
-const className = cn('base-class', conditional && 'conditional-class');
-const fontSize = pxToRem(16); // "1rem"
-const responsiveSize = fluidType(16, 24); // Fluid typography between 16px and 24px
 ```
 
 ## Benefits

@@ -3,7 +3,6 @@ import { cn } from "@/design/utils";
 import { textVariants } from "@/design/components";
 import { TextVariant, FontWeight, FontFamily, TextSize } from "@/design/constants";
 
-// Element-specific styles that complement the textVariants
 const elementStyles = {
   p: "font-sans text-base",
   li: "font-sans text-base",
@@ -16,14 +15,13 @@ const elementStyles = {
   h6: "text-base font-normal font-head",
 };
 
-// Define TextProps by extending HTMLAttributes and redefining className
 export interface TextProps extends HTMLAttributes<HTMLElement> {
   as?: keyof typeof elementStyles;
   variant?: TextVariant;
   size?: TextSize;
   weight?: FontWeight;
   font?: FontFamily;
-  className?: string; // Redefining className here overrides the one from HTMLAttributes
+  className?: string;
 }
 
 export const Text = (props: TextProps) => {

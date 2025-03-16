@@ -3,23 +3,17 @@ import { actionListener } from '../MyActionListener';
 import { checkWordExists } from '../services/dictionaryService';
 import { ActionType, WordStatus } from '@/types';
 
-/**
- * Custom hook for managing the word game state and logic
- */
 export const useWordGame = (maxLength: number) => {
   const [word, setWord] = useState<string[]>([]);
   const [status, setStatus] = useState<WordStatus>(WordStatus.NEUTRAL);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const wordRef = useRef<string[]>([]);
 
-  // Keep the ref updated with the latest word value
   useEffect(() => {
     wordRef.current = word;
   }, [word]);
 
-  // Register listeners when the hook is first used
   useEffect(() => {
-    // Add character listener
     actionListener.registerListener(ActionType.ADD_CHARACTER, (data: unknown) => {
       if (typeof data === 'string') {
         setWord(prev => {
@@ -28,12 +22,10 @@ export const useWordGame = (maxLength: number) => {
           }
           return prev;
         });
-        // Reset status when adding characters
         setStatus(WordStatus.NEUTRAL);
       }
     });
 
-    // Remove character listener
     actionListener.registerListener(ActionType.REMOVE_CHARACTER, () => {
       setWord(prev => {
         if (prev.length > 0) {
@@ -41,15 +33,12 @@ export const useWordGame = (maxLength: number) => {
         }
         return prev;
       });
-      // Reset status when removing characters
       setStatus(WordStatus.NEUTRAL);
     });
 
-    // Check word listener
     actionListener.registerListener(ActionType.CHECK_WORD, async () => {
       const currentWord = wordRef.current;
       
-      // Only proceed with API call if word is complete
       if (currentWord.length === maxLength) {
         setIsLoading(true);
         try {
@@ -61,25 +50,20 @@ export const useWordGame = (maxLength: number) => {
           setStatus(WordStatus.INVALID);
         } finally {
           setIsLoading(false);
-          // Emit completion event
           actionListener.emit(ActionType.CHECK_WORD_COMPLETE, null);
         }
       } else {
-        // Word is incomplete, mark as invalid without API call
         setStatus(WordStatus.INVALID);
-        // Emit completion event for invalid length
         actionListener.emit(ActionType.CHECK_WORD_COMPLETE, null);
       }
     });
 
-    // Reset game listener
     actionListener.registerListener(ActionType.RESET_GAME, () => {
       setWord([]);
       setStatus(WordStatus.NEUTRAL);
       setIsLoading(false);
     });
 
-    // Clean up listeners when component unmounts
     return () => {
       actionListener.removeListener(ActionType.ADD_CHARACTER);
       actionListener.removeListener(ActionType.REMOVE_CHARACTER);
@@ -89,7 +73,6 @@ export const useWordGame = (maxLength: number) => {
     };
   }, [maxLength]);
 
-  // Handler functions
   const handleAddCharacter = (character: string) => {
     actionListener.emit(ActionType.ADD_CHARACTER, character);
   };
@@ -98,27 +81,22 @@ export const useWordGame = (maxLength: number) => {
     actionListener.emit(ActionType.REMOVE_CHARACTER, null);
   };
 
-  const handleCheckWord = (): Promise<void> => {
-    return new Promise<void>((resolve) => {
-      // Create a one-time listener to resolve the promise when the check is complete
-      const checkCompleteListener = () => {
-        resolve();
+  const handleCheckWord = async (): Promise<void> => {
+    const isWordComplete = wordRef.current.length === maxLength;
+    
+    if (!isWordComplete) {
+      setStatus(WordStatus.INVALID);
+      return;
+    }
+    
+    await new Promise<void>((resolve) => {
+      const onComplete = () => {
         actionListener.removeListener(ActionType.CHECK_WORD_COMPLETE);
+        resolve();
       };
       
-      actionListener.registerListener(ActionType.CHECK_WORD_COMPLETE, checkCompleteListener);
-      
-      // Check if word is complete before emitting the check event
-      const isWordComplete = wordRef.current.length === maxLength;
-      
-      // Emit the check word event
+      actionListener.registerListener(ActionType.CHECK_WORD_COMPLETE, onComplete);
       actionListener.emit(ActionType.CHECK_WORD, null);
-      
-      // If the word is not complete, resolve immediately
-      if (!isWordComplete) {
-        resolve();
-        actionListener.removeListener(ActionType.CHECK_WORD_COMPLETE);
-      }
     });
   };
 

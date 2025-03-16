@@ -20,7 +20,6 @@ const Home = () => {
 		resetGame,
 	} = useWordGame(WORD_LENGTH);
 
-	// Function to test error handling
 	const testActionListener = () => {
 		actionListener.registerListener("PRINT", (data: unknown) => {
 			if (typeof data === 'string') {
@@ -46,15 +45,12 @@ const Home = () => {
 
 				<Card className="w-full max-w-2xl">
 					<div className="flex flex-col items-center justify-center p-2 sm:p-4 md:p-8 relative">
-						{/* Game Header with Status */}
 						<GameHeader isLoading={isLoading} status={status} />
 
-						{/* Game Board */}
 						<Card className="mb-4 sm:mb-8 p-2 sm:p-4">
 							<GameBoard word={word} status={status} maxLength={WORD_LENGTH} />
 						</Card>
 
-						{/* Game Controls */}
 						<GameControls
 							onAddCharacter={handleAddCharacter}
 							onRemoveCharacter={handleRemoveCharacter}
@@ -68,7 +64,6 @@ const Home = () => {
 				</Card>
 			</div>
 
-			{/* Test Error Handling Button */}
 			<div className="mt-4 flex justify-center w-full">
 				<Button
 					onClick={testActionListener}

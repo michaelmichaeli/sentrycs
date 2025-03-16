@@ -1,6 +1,3 @@
-// Design tokens centralized in one place
-// These values are synchronized with CSS variables in index.css
-
 // Typography
 export const typography = {
   fontFamily: {
