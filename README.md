@@ -13,6 +13,7 @@ A fun and interactive word game where you can challenge your vocabulary! Built w
 - 📱 Mobile-friendly with touch support
 - ⚡ Fast and smooth performance
 - 🎮 Keyboard support for desktop users
+- 🔄 Event-driven architecture with custom action listener
 
 ## 🛠️ Technologies Used
 
@@ -23,6 +24,7 @@ A fun and interactive word game where you can challenge your vocabulary! Built w
 - **Icons**: React Icons
 - **UI Components**: Radix UI primitives
 - **Routing**: React Router DOM
+- **State Management**: Custom hooks with action listener pattern
 - **Code Quality**: ESLint with TypeScript and React plugins
 
 ## 🚀 Getting Started
@@ -41,7 +43,7 @@ git clone https://github.com/michaelmichaeli/word-game.git
 cd word-game
 ```
 
-1. Install dependencies:
+2. Install dependencies:
 
 ```bash
 npm install
@@ -49,7 +51,7 @@ npm install
 yarn
 ```
 
-1. Start the development server:
+3. Start the development server:
 
 ```bash
 npm run dev
@@ -57,17 +59,17 @@ npm run dev
 yarn dev
 ```
 
-1. Open your browser and navigate to `http://localhost:5173`
+4. Open your browser and navigate to `http://localhost:5173`
 
 ## 🎮 How to Play
 
 1. Type or click letters to form a 5-letter word
-1. Use backspace to remove letters if you make a mistake
-1. Press Enter when your word is complete
-1. The game will check if your word exists:
+2. Use backspace to remove letters if you make a mistake
+3. Press Enter when your word is complete
+4. The game will check if your word exists:
    - ✅ Green border = Valid word
    - ❌ Red border = Invalid word
-1. Press the Reset button to start over
+5. Press the Reset button to start over
 
 ## 🏗️ Project Structure
 
@@ -77,8 +79,10 @@ src/
 ├── hooks/         # Custom React hooks
 ├── pages/         # Page components
 ├── services/      # API services
-├── styles/        # Global styles
-└── utils/         # Utility functions
+├── types/         # TypeScript type definitions
+├── design/        # Design system components
+├── assets/        # Static assets
+└── MyActionListener.ts # Custom event system
 ```
 
 ## 🧩 Key Components
@@ -88,12 +92,62 @@ src/
 - `Square`: Individual character display
 - `useWordGame`: Game logic and state management
 
-## 🔄 Game Actions
+## 🎛️ Game Architecture
 
-- Add a letter to the word
-- Remove the last letter
-- Validate the word
-- Start a new game
+### Action Listener Pattern
+
+The game uses a custom event-driven architecture with an action listener pattern:
+
+1. Components dispatch actions through the `actionListener`
+2. The `useWordGame` hook registers listeners for these actions
+3. When an action is emitted, the appropriate handler is triggered
+4. State updates are propagated back to the UI
+
+### Action Types
+
+```typescript
+enum ActionType {
+  ADD_CHARACTER = 'ADD_CHARACTER',
+  REMOVE_CHARACTER = 'REMOVE_CHARACTER',
+  CHECK_WORD = 'CHECK_WORD',
+  CHECK_WORD_COMPLETE = 'CHECK_WORD_COMPLETE',
+  RESET_GAME = 'RESET_GAME'
+}
+```
+
+### Word Status
+
+```typescript
+enum WordStatus {
+  VALID = 'valid',
+  INVALID = 'invalid',
+  NEUTRAL = 'neutral'
+}
+```
+
+## 🎣 useWordGame Hook
+
+The `useWordGame` hook is the core of the game logic:
+
+- Manages the current word state as an array of characters
+- Handles adding and removing characters
+- Validates words against the dictionary API
+- Manages loading states during API calls
+- Provides methods for game actions (add, remove, check, reset)
+
+Example usage:
+
+```typescript
+const { 
+  word,
+  status,
+  isLoading,
+  handleAddCharacter,
+  handleRemoveCharacter,
+  handleCheckWord,
+  resetGame
+} = useWordGame(5); // 5 is the word length
+```
 
 ## 📝 License
 
