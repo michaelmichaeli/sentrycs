@@ -11,13 +11,13 @@ const StatusAlert = ({ isLoading, status }: StatusAlertProps) => {
   } else if (status === WordStatus.VALID) {
     return (
       <Alert status="success" className="text-green-600 font-medium">
-        Great job! That's a valid word.
+        Great job! That&apos;s a valid word.
       </Alert>
     );
   } else if (status === WordStatus.INVALID) {
     return (
       <Alert status="error" className="text-red-600 font-medium">
-        Sorry, that's not a valid word. Try again!
+        Sorry, that&apos;s not a valid word. Try again!
       </Alert>
     );
   }

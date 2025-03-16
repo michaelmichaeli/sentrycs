@@ -4,9 +4,8 @@ import { KeyFeaturesSection } from "@/components/about/KeyFeaturesSection";
 import { Text } from "@/components/ui/Text";
 import { Button } from "@/components/ui/Button";
 import { FiArrowLeft } from "react-icons/fi";
-import { AboutProps } from "@/types";
 
-const About = ({ }: AboutProps) => {
+const About = () => {
   return (
     <div className="flex justify-center px-2 sm:px-4">
       <div className="w-full max-w-3xl space-y-6">

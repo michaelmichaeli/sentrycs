@@ -1,6 +1,6 @@
-import starsBg from '../../assets/starts_bg.svg';
-import shootingStar from '../../assets/shooting_star.svg';
-import tvRadio from '../../assets/tv_radio.png';
+import starsBg from '@/assets/starts_bg.svg';
+import shootingStar from '@/assets/shooting_star.svg';
+import tvRadio from '@/assets/tv_radio.png';
 
 const BackgroundDecorations = () => {
   return (

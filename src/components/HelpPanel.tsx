@@ -12,7 +12,6 @@ import { Text } from "@/components/ui/Text";
 import { 
   Dialog, 
   DialogContent, 
-  DialogHeader, 
   DialogTitle 
 } from "@/components/ui/Dialog";
 import { Button } from "@/components/ui/Button";

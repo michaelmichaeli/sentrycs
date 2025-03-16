@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { FiDelete, FiCornerDownLeft, FiRefreshCw } from 'react-icons/fi';
-import { ImSpinner8 } from 'react-icons/im';
 import { Button } from "@/components/ui/Button";
 import { useKeyboard } from '@/hooks/useKeyboard';
 import { KeyboardProps } from '@/types';
@@ -19,11 +18,11 @@ const Keyboard: React.FC<KeyboardProps> = ({
   currentWordLength = 0
 }) => {
   // Define keyboard rows
-  const rows = [
+  const rows = useMemo(() => [
     ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
     ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
     ['Z', 'X', 'C', 'V', 'B', 'N', 'M']
-  ];
+  ], []);
 
   // Use keyboard hook for handling keyboard events and getting disabled states
   const { isEnterDisabled, isBackspaceDisabled } = useKeyboard({
@@ -61,7 +60,7 @@ const Keyboard: React.FC<KeyboardProps> = ({
     });
     
     return colorMap;
-  }, []);
+  }, [rows]);
 
   // Handle character button click
   const handleCharClick = (char: string) => {

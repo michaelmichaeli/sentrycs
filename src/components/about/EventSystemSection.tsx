@@ -59,7 +59,7 @@ export const EventSystemSection = () => {
                     <span className={punctuationStyle}>.</span>
                     <span className={functionStyle}>registerListener</span>
                     <span className={punctuationStyle}>(</span>
-                    <span className={stringStyle}>'wordChecked'</span>
+                    <span className={stringStyle}>&apos;wordChecked&apos;</span>
                     <span className={punctuationStyle}>, </span>
                     <span className={punctuationStyle}>(</span>
                     <span>result</span>
@@ -70,7 +70,7 @@ export const EventSystemSection = () => {
                     <span className={punctuationStyle}>.</span>
                     <span className={functionStyle}>log</span>
                     <span className={punctuationStyle}>(</span>
-                    <span className={stringStyle}>'Word check result:'</span>
+                    <span className={stringStyle}>&apos;Word check result:&apos;</span>
                     <span className={punctuationStyle}>, </span>
                     <span>result</span>
                     <span className={punctuationStyle}>);</span>
@@ -101,7 +101,7 @@ export const EventSystemSection = () => {
                     <span className={punctuationStyle}>.</span>
                     <span className={functionStyle}>emit</span>
                     <span className={punctuationStyle}>(</span>
-                    <span className={stringStyle}>'wordChecked'</span>
+                    <span className={stringStyle}>&apos;wordChecked&apos;</span>
                     <span className={punctuationStyle}>, </span>
                     <span className={punctuationStyle}>{'{'}</span>{'\n'}
                     {'  '}<span>correct</span>
@@ -110,7 +110,7 @@ export const EventSystemSection = () => {
                     <span className={punctuationStyle}>,</span>{'\n'}
                     {'  '}<span>word</span>
                     <span className={punctuationStyle}>: </span>
-                    <span className={stringStyle}>'APPLE'</span>{'\n'}
+                    <span className={stringStyle}>&apos;APPLE&apos;</span>{'\n'}
                     <span className={punctuationStyle}>{'}'});</span>
                   </code>
                 </pre>
@@ -138,7 +138,7 @@ export const EventSystemSection = () => {
                     <span className={punctuationStyle}>.</span>
                     <span className={functionStyle}>removeListener</span>
                     <span className={punctuationStyle}>(</span>
-                    <span className={stringStyle}>'wordChecked'</span>
+                    <span className={stringStyle}>&apos;wordChecked&apos;</span>
                     <span className={punctuationStyle}>);</span>
                   </code>
                 </pre>

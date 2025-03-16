@@ -21,6 +21,7 @@ A fun and interactive word game where you can challenge your vocabulary! Built w
 - **Icons**: React Icons
 - **UI Components**: Radix UI primitives
 - **Routing**: React Router DOM
+- **Code Quality**: ESLint with TypeScript and React plugins
 
 ## 🚀 Getting Started
 
@@ -98,3 +99,17 @@ This project is open source and available under the MIT License.
 - [Free Dictionary API](https://dictionaryapi.dev/) for word validation
 - [Radix UI](https://www.radix-ui.com/) for accessible UI primitives
 - [React Icons](https://react-icons.github.io/react-icons/) for beautiful icons
+
+## 🧪 Code Quality
+
+### Linting
+
+The project uses ESLint for code quality and consistency. To run the linter:
+
+```bash
+# Run linting
+npm run lint
+
+# Run linting with automatic fixes
+npm run lint:fix
+```

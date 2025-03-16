@@ -1,4 +1,3 @@
-import { Text } from "@/components/ui/Text";
 import StatusAlert from "./StatusAlert";
 import { GameHeaderProps } from "@/types";
 

@@ -20,15 +20,17 @@ export const useWordGame = (maxLength: number) => {
   // Register listeners when the hook is first used
   useEffect(() => {
     // Add character listener
-    actionListener.registerListener(ActionType.ADD_CHARACTER, (character: string) => {
-      setWord(prev => {
-        if (prev.length < maxLength) {
-          return [...prev, character];
-        }
-        return prev;
-      });
-      // Reset status when adding characters
-      setStatus(WordStatus.NEUTRAL);
+    actionListener.registerListener(ActionType.ADD_CHARACTER, (data: unknown) => {
+      if (typeof data === 'string') {
+        setWord(prev => {
+          if (prev.length < maxLength) {
+            return [...prev, data];
+          }
+          return prev;
+        });
+        // Reset status when adding characters
+        setStatus(WordStatus.NEUTRAL);
+      }
     });
 
     // Remove character listener

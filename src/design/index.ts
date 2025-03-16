@@ -10,18 +10,31 @@ export * from './utils';
 // Export all design constants
 export * from './constants';
 
+// Import tokens
+import { 
+  colors, 
+  typography, 
+  spacing, 
+  borderRadius, 
+  shadows, 
+  grid, 
+  animation, 
+  zIndex, 
+  breakpoints 
+} from './tokens';
+
 // Design system theme object that combines all tokens
 export const theme = {
   // Re-export tokens for convenience
-  colors: require('./tokens').colors,
-  typography: require('./tokens').typography,
-  spacing: require('./tokens').spacing,
-  borderRadius: require('./tokens').borderRadius,
-  shadows: require('./tokens').shadows,
-  grid: require('./tokens').grid,
-  animation: require('./tokens').animation,
-  zIndex: require('./tokens').zIndex,
-  breakpoints: require('./tokens').breakpoints,
+  colors,
+  typography,
+  spacing,
+  borderRadius,
+  shadows,
+  grid,
+  animation,
+  zIndex,
+  breakpoints,
 };
 
 // Export default theme

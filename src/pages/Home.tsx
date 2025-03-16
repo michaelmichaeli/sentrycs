@@ -6,11 +6,10 @@ import { Card } from "@/components/ui/Card";
 import { Text } from "@/components/ui/Text";
 import { Button } from "@/components/ui/Button";
 import { WORD_LENGTH } from "../constants";
-import { HomeProps } from "@/types";
 import { actionListener } from "../MyActionListener";
 import { FiTerminal } from "react-icons/fi";
 
-const Home = ({}: HomeProps) => {
+const Home = () => {
 	const {
 		word,
 		status,
@@ -23,12 +22,16 @@ const Home = ({}: HomeProps) => {
 
 	// Function to test error handling
 	const testActionListener = () => {
-		actionListener.registerListener("PRINT", (data: string) =>
-			console.log(`Don't tell me what I ${data} or ${data}'t do`)
-		);
-		actionListener.registerListener("PRINT", (data: string) =>
-			console.log(`I eat pickles right of the ${data}`)
-		);
+		actionListener.registerListener("PRINT", (data: unknown) => {
+			if (typeof data === 'string') {
+				console.log(`Don't tell me what I ${data} or ${data}'t do`);
+			}
+		});
+		actionListener.registerListener("PRINT", (data: unknown) => {
+			if (typeof data === 'string') {
+				console.log(`I eat pickles right of the ${data}`);
+			}
+		});
 		actionListener.emit("PRINT", "Can");
 		actionListener.removeListener("PRINT");
 		actionListener.emit("PRINT", "Can");

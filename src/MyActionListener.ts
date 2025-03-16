@@ -1,5 +1,5 @@
 export class MyActionListener {
-	private actions: Record<string, Function[]>;
+	private actions: Record<string, Array<(data: unknown) => void>>;
 
 	// Init the class
 	constructor() {
@@ -10,7 +10,7 @@ export class MyActionListener {
 	// listener should be added to the already existing listeners
 	// action - Action name
 	// listener - Function to invoke upon action call
-	registerListener(action: string, listener: Function): void {
+	registerListener(action: string, listener: (data: unknown) => void): void {
 		if (!this.actions[action]) {
 			this.actions[action] = [];
 		}
@@ -28,7 +28,7 @@ export class MyActionListener {
 	// In case the action is not registered, an exception thrown
 	// action - The action name
 	// data - The data to pass to all registered listeners as parameter
-	emit(action: string, data: any): void {
+	emit(action: string, data: unknown): void {
 		if (!this.actions[action]) {
 			throw new Error(`Can't emit an event. Event "${action}" doesn't exist.`);
 		}
