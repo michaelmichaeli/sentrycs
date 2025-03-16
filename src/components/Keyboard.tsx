@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { FiDelete } from 'react-icons/fi';
+import { FiDelete, FiCornerDownLeft, FiRefreshCw } from 'react-icons/fi';
 import { ImSpinner8 } from 'react-icons/im';
 import { Button } from "@/components/ui/Button";
 import { useKeyboard } from '@/hooks/useKeyboard';
@@ -141,15 +141,16 @@ const Keyboard: React.FC<KeyboardProps> = ({
 
       {/* Third row with ENTER and Backspace */}
       <div className="flex gap-1 justify-center w-full h-8">
-        <div className="w-[15%] h-full">
+        <div className="w-[18%] h-full">
           <Button
-            className={`w-full h-full flex items-center justify-center text-[10px] ${getEnterButtonStyle()}`}
+            className={`w-full h-full flex items-center justify-center text-[10px] text-white ${getEnterButtonStyle()}`}
             onClick={onEnterClick}
             disabled={isEnterDisabled}
             title={!wordIsFull ? "Complete the word first" : "Check word"}
             variant={isEnterDisabled ? "outline" : "default"}
           >
-            ENTER
+            <FiCornerDownLeft size={16} className="mr-1 text-white" />
+            <span>ENTER</span>
           </Button>
         </div>
 
@@ -168,13 +169,13 @@ const Keyboard: React.FC<KeyboardProps> = ({
 
         <div className="w-[15%] h-full">
           <Button
-            className={`w-full h-full flex items-center justify-center ${getBackspaceButtonStyle()}`}
+            className={`w-full h-full flex items-center justify-center text-white ${getBackspaceButtonStyle()}`}
             onClick={onBackspaceClick}
             aria-label="Backspace"
             disabled={isBackspaceDisabled}
             variant="default"
           >
-            <FiDelete size={14} />
+            <FiDelete size={16} className="text-white" />
           </Button>
         </div>
       </div>
@@ -185,9 +186,10 @@ const Keyboard: React.FC<KeyboardProps> = ({
           onClick={onResetGame}
           disabled={isLoading || currentWordLength === 0}
           variant="default"
-          className={`w-full h-full text-xs font-bold ${getResetButtonStyle()}`}
+          className={`w-full h-full text-xs font-bold text-white flex items-center justify-center ${getResetButtonStyle()}`}
         >
-          Reset Game
+          <FiRefreshCw size={16} className="mr-2 text-white" />
+          <span>Reset Game</span>
         </Button>
       </div>
     </div>

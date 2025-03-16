@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { ErrorInfo } from "react";
 
 // Action types from useWordGame
 export enum ActionType {
@@ -88,4 +89,22 @@ export interface UseKeyboardProps {
   isLoading?: boolean;
   disableKeys?: boolean;
   currentWordLength?: number;
+}
+
+// Error Boundary Types
+export interface ErrorBoundaryProps {
+  children: ReactNode;
+  fallback?: ReactNode;
+}
+
+export interface ErrorBoundaryState {
+  hasError: boolean;
+  error: Error | null;
+  errorInfo: ErrorInfo | null;
+}
+
+export interface ErrorDialogProps {
+  error: Error | null;
+  open: boolean;
+  onClose: () => void;
 } 

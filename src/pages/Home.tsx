@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { WORD_LENGTH } from "../constants";
 import { HomeProps } from "@/types";
 import { actionListener } from "../MyActionListener";
+import { FiTerminal } from "react-icons/fi";
 
 const Home = ({}: HomeProps) => {
 	const {
@@ -65,12 +66,13 @@ const Home = ({}: HomeProps) => {
 			</div>
 
 			{/* Test Error Handling Button */}
-			<div className="mt-4">
+			<div className="mt-4 flex justify-center w-full">
 				<Button
 					onClick={testActionListener}
-					className="bg-red-500 hover:bg-red-600 text-white"
+					className="bg-red-500 hover:bg-red-600 text-white flex items-center gap-2"
 				>
-					Test My Action Listener Handling (Look at the console)
+					<FiTerminal size={18} className="flex-shrink-0" />
+					<span>Test My Action Listener Handling (Look at the console)</span>
 				</Button>
 			</div>
 		</>
