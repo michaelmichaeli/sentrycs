@@ -1,112 +1,131 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/Button';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/Button";
 import { FiHelpCircle, FiHome, FiInfo } from "react-icons/fi";
-import logo from '@/assets/logo.svg';
+import logo from "@/assets/logo.svg";
+import { WORD_LENGTH } from "@/pages/Home";
+import HelpPanel from "../HelpPanel";
 
-interface HeaderProps {
-  onHelpClick: () => void;
-}
+interface HeaderProps {}
 
-const Header = ({ onHelpClick }: HeaderProps) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+const Header = ({}: HeaderProps) => {
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [isHelpOpen, setIsHelpOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+	const toggleMenu = () => {
+		setIsMenuOpen(!isMenuOpen);
+	};
 
-  return (
-    <header className="sticky top-0 z-50 bg-primary text-black shadow-md">
-      <div className="container mx-auto px-4 py-3">
-        <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center">
-            <img src={logo} alt="Word Game" className="h-12 w-auto" />
-          </Link>
-          
-          <div className="flex items-center gap-4">
-            {/* Desktop navigation */}
-            <nav className="hidden md:flex space-x-4">
-              <Link 
-                to="/" 
-                className="relative px-4 py-2 group overflow-hidden rounded"
-              >
-                <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute inset-x-0 -bottom-[2px] h-[2px] bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                <span className="relative z-10 flex items-center gap-2">
-                  <FiHome size={20} />
-                  <span>Home</span>
-                </span>
-              </Link>
-              <Link 
-                to="/about" 
-                className="relative px-4 py-2 group overflow-hidden rounded"
-              >
-                <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute inset-x-0 -bottom-[2px] h-[2px] bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                <span className="relative z-10 flex items-center gap-2">
-                  <FiInfo size={20} />
-                  <span>About</span>
-                </span>
-              </Link>
-            </nav>
+	return (
+		<>
+			<header className="sticky top-0 z-50 bg-primary text-black shadow-md">
+				<div className="container mx-auto px-4 py-3">
+					<div className="flex justify-between items-center">
+						<Link to="/" className="flex items-center">
+							<img src={logo} alt="Word Game" className="h-12 w-auto" />
+						</Link>
 
-            {/* Help button - visible on all screens */}
-            <Button
-              variant="outline"
-              className="flex items-center gap-2 border-2 border-black"
-              onClick={onHelpClick}
-            >
-              <FiHelpCircle className="text-black" size={20} />
-              <span className="hidden md:inline">How to Play</span>
-            </Button>
+						<div className="flex items-center gap-4">
+							{/* Desktop navigation */}
+							<nav className="hidden md:flex space-x-4">
+								<Link
+									to="/"
+									className="relative px-4 py-2 group overflow-hidden rounded"
+								>
+									<div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+									<div className="absolute inset-x-0 -bottom-[2px] h-[2px] bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+									<span className="relative z-10 flex items-center gap-2">
+										<FiHome size={20} />
+										<span>Home</span>
+									</span>
+								</Link>
+								<Link
+									to="/about"
+									className="relative px-4 py-2 group overflow-hidden rounded"
+								>
+									<div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+									<div className="absolute inset-x-0 -bottom-[2px] h-[2px] bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+									<span className="relative z-10 flex items-center gap-2">
+										<FiInfo size={20} />
+										<span>About</span>
+									</span>
+								</Link>
+							</nav>
 
-            {/* Mobile menu button */}
-            <button
-              className="md:hidden p-2 rounded focus:outline-none border-2 border-black" 
-              onClick={toggleMenu}
-              aria-label="Toggle menu"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="h-6 w-6" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-              >
-                {isMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-          </div>
-        </div>
-        
-        {/* Mobile navigation */}
-        {isMenuOpen && (
-          <nav className="md:hidden mt-3 pb-2 space-y-2">
-            <Link 
-              to="/" 
-              className="flex items-center gap-2 py-2 px-4 rounded hover:bg-black/10 transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <FiHome size={20} />
-              <span>Home</span>
-            </Link>
-            <Link 
-              to="/about" 
-              className="flex items-center gap-2 py-2 px-4 rounded hover:bg-black/10 transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <FiInfo size={20} />
-              <span>About</span>
-            </Link>
-          </nav>
-        )}
-      </div>
-    </header>
-  );
+							{/* Help button - visible on all screens */}
+							<Button
+								variant="outline"
+								className="flex items-center gap-2 border-2 border-black"
+								onClick={() => setIsHelpOpen(true)}
+							>
+								<FiHelpCircle className="text-black" size={20} />
+								<span className="hidden md:inline">How to Play</span>
+							</Button>
+
+							{/* Mobile menu button */}
+							<button
+								className="md:hidden p-2 rounded focus:outline-none border-2 border-black"
+								onClick={toggleMenu}
+								aria-label="Toggle menu"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									className="h-6 w-6"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+								>
+									{isMenuOpen ? (
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth={2}
+											d="M6 18L18 6M6 6l12 12"
+										/>
+									) : (
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth={2}
+											d="M4 6h16M4 12h16M4 18h16"
+										/>
+									)}
+								</svg>
+							</button>
+						</div>
+					</div>
+
+					{/* Mobile navigation */}
+					{isMenuOpen && (
+						<nav className="md:hidden mt-3 pb-2 space-y-2">
+							<Link
+								to="/"
+								className="flex items-center gap-2 py-2 px-4 rounded hover:bg-black/10 transition-colors"
+								onClick={() => setIsMenuOpen(false)}
+							>
+								<FiHome size={20} />
+								<span>Home</span>
+							</Link>
+							<Link
+								to="/about"
+								className="flex items-center gap-2 py-2 px-4 rounded hover:bg-black/10 transition-colors"
+								onClick={() => setIsMenuOpen(false)}
+							>
+								<FiInfo size={20} />
+								<span>About</span>
+							</Link>
+						</nav>
+					)}
+				</div>
+			</header>
+			{/* Help Panel */}
+			<HelpPanel
+				wordLength={WORD_LENGTH}
+				isOpen={isHelpOpen}
+				onClose={() => setIsHelpOpen(false)}
+			/>
+		</>
+	);
 };
 
-export default Header; 
+export default Header;

@@ -2,41 +2,12 @@ import { Card } from "@/components/ui/Card";
 import { Text } from "@/components/ui/Text";
 import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
-import { useMemo } from "react";
-import HelpPanel from "@/components/HelpPanel";
 import { FiExternalLink, FiArrowLeft, FiMonitor, FiSmartphone, FiKey, FiCode, FiCpu, FiTerminal, FiPackage, FiLayers, FiTool } from "react-icons/fi";
 import { SiReact, SiTypescript, SiVite, SiTailwindcss, SiRadixui } from "react-icons/si";
 import { BsKeyboard, BsEyeFill, BsSpeedometer, BsTools } from "react-icons/bs";
 import { IoGameController } from "react-icons/io5";
 import { MdEventNote, MdEventAvailable, MdEventBusy } from "react-icons/md";
 import { AiOutlineApi } from "react-icons/ai";
-
-// Add styles for shooting star
-const shootingStarStyle = `
-  absolute top-20 -left-10
-  w-4 h-0.5 bg-white
-  rounded-full
-  shadow-[0_0_0_1px_#ffffff10,0_0_0_2px_#ffffff10,0_0_20px_2px_#ffffff50]
-  animate-[shootingStar_3s_ease-in-out_infinite]
-`;
-
-// Add keyframes for shooting star animation
-const shootingStarKeyframes = `
-@keyframes shootingStar {
-  0% {
-    transform: translateX(0) scale(0.3);
-    opacity: 0;
-  }
-  50% {
-    transform: translateX(200px) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(400px) scale(0.3);
-    opacity: 0;
-  }
-}
-`;
 
 // Add styles for code blocks
 const codeBlockStyle = "font-mono text-left bg-[#1e1e1e] text-white p-4 rounded border-2 border-black overflow-x-auto";
@@ -47,11 +18,9 @@ const functionStyle = "text-[#DCDCAA]"; // yellow function names
 const punctuationStyle = "text-[#D4D4D4]"; // light gray punctuation
 
 interface AboutProps {
-  isHelpOpen?: boolean;
-  onHelpClose?: () => void;
 }
 
-const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
+const About = ({ }: AboutProps) => {
   // Define accordion colors using our design system
   const accordionColors = {
     'event-registration': 'bg-primary-300 hover:bg-primary-400 border-primary-500',
@@ -62,20 +31,7 @@ const About = ({ isHelpOpen = false, onHelpClose = () => {} }: AboutProps) => {
   };
 
   return (
-    <>
-      {/* Inject keyframes */}
-      <style>{shootingStarKeyframes}</style>
-      
-      {/* Shooting star */}
-      <div className={shootingStarStyle} />
-
-      {/* Help Panel */}
-      <HelpPanel 
-        wordLength={5}
-        isOpen={isHelpOpen}
-        onClose={onHelpClose}
-      />
-      
+    <>      
       <div className="flex justify-center px-2 sm:px-4">
         <div className="w-full max-w-3xl space-y-6">
           <Text as="h1" className="text-3xl font-bold text-black text-center">About Word Game</Text>
