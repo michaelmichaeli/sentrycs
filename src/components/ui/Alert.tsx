@@ -1,5 +1,5 @@
 import { cva } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import { cn } from "@/design/utils";
 import { Text } from "@/components/ui/Text";
 import { HtmlHTMLAttributes } from "react";
 

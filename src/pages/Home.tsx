@@ -37,7 +37,7 @@ const Home = ({}: HomeProps) => {
 	return (
 		<>
 			<div className="flex flex-col items-center px-2 sm:px-4">
-				<Text as="h1" className="text-4xl font-head font-bold mb-8">
+				<Text as="h1" className="text-4xl font-bold mb-8">
 					Word Game
 				</Text>
 

@@ -1,7 +1,20 @@
 import { useMemo } from "react";
-import { FiX } from "react-icons/fi";
+import { 
+  FiX, 
+  FiType, 
+  FiCornerDownLeft, 
+  FiCheck, 
+  FiX as FiXMark, 
+  FiDelete, 
+  FiRefreshCw 
+} from "react-icons/fi";
 import { Text } from "@/components/ui/Text";
-import { Card } from "@/components/ui/Card";
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle 
+} from "@/components/ui/Dialog";
 import { Button } from "@/components/ui/Button";
 import { HelpPanelProps } from "@/types";
 
@@ -20,66 +33,89 @@ const HelpPanel = ({ wordLength, isOpen, onClose }: HelpPanelProps) => {
   }, []);
 
   const InstructionsList = () => (
-    <ul className="list-disc pl-5 space-y-2 text-left text-sm md:text-base text-black">
-      <li className="py-1">
-        Enter a {wordLength}-letter English word using the keyboard
-        below
+    <ul className="space-y-3 text-left text-sm md:text-base text-black">
+      <li className="flex items-start gap-3">
+        <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-primary-300 rounded-full mt-0.5">
+          <FiType size={14} className="text-black" />
+        </div>
+        <span>
+          Enter a {wordLength}-letter English word using the keyboard below
+        </span>
       </li>
-      <li className="py-1">
-        Press <span className="font-semibold">ENTER</span> to check if
-        your word exists in the dictionary
+      
+      <li className="flex items-start gap-3">
+        <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-primary-400 rounded-full mt-0.5">
+          <FiCornerDownLeft size={14} className="text-black" />
+        </div>
+        <span>
+          Press <span className="font-semibold">ENTER</span> to check if your word exists in the dictionary
+        </span>
       </li>
-      <li className="py-1">
-        If the word is valid, the border will turn green
+      
+      <li className="flex items-start gap-3">
+        <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-green-400 rounded-full mt-0.5">
+          <FiCheck size={14} className="text-black" />
+        </div>
+        <span>
+          If the word is valid, the border will turn green
+        </span>
       </li>
-      <li className="py-1">
-        If the word is invalid, the border will turn red
+      
+      <li className="flex items-start gap-3">
+        <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-red-400 rounded-full mt-0.5">
+          <FiXMark size={14} className="text-black" />
+        </div>
+        <span>
+          If the word is invalid, the border will turn red
+        </span>
       </li>
-      <li className="py-1">
-        Use the <span className="font-semibold">Backspace</span>{" "}
-        button to delete letters
+      
+      <li className="flex items-start gap-3">
+        <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-primary-600 rounded-full mt-0.5">
+          <FiDelete size={14} className="text-black" />
+        </div>
+        <span>
+          Use the <span className="font-semibold">Backspace</span> button to delete letters
+        </span>
       </li>
-      <li className="py-1">
-        Press <span className="font-semibold">Reset Game</span> to
-        start over
+      
+      <li className="flex items-start gap-3">
+        <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-yellow-400 rounded-full mt-0.5">
+          <FiRefreshCw size={14} className="text-black" />
+        </div>
+        <span>
+          Press <span className="font-semibold">Reset Game</span> to start over
+        </span>
       </li>
     </ul>
   );
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-50">
-      {/* Backdrop */}
-      <div 
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm"
-        onClick={onClose}
-      />
-      
-      {/* Dialog Content */}
-      <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg">
-        <Card className="border-2 border-black shadow-lg">
-          {/* Header */}
-          <div className={`flex items-center justify-between p-4 ${helpPanelBgColor} border-b-2 border-black`}>
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="p-0 border-2 border-black shadow-lg" hideCloseButton>
+        {/* Custom Header with colored background */}
+        <div className={`flex items-center justify-between p-4 ${helpPanelBgColor} border-b-2 border-black`}>
+          <DialogTitle asChild>
             <Text className="text-black font-head font-semibold">
               How to Play
             </Text>
-            <Button
-              variant="outline"
-              className="p-1"
-              onClick={onClose}
-            >
-              <FiX size={20} />
-            </Button>
-          </div>
-          
-          {/* Content */}
-          <div className="p-4 bg-white">
-            <InstructionsList />
-          </div>
-        </Card>
-      </div>
-    </div>
+          </DialogTitle>
+          <Button
+            variant="outline"
+            size="sm"
+            className="p-1"
+            onClick={onClose}
+          >
+            <FiX size={20} />
+          </Button>
+        </div>
+        
+        {/* Content */}
+        <div className="p-4 bg-white">
+          <InstructionsList />
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 };
 

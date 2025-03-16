@@ -10,7 +10,7 @@ const About = ({ }: AboutProps) => {
   return (
     <div className="flex justify-center px-2 sm:px-4">
       <div className="w-full max-w-3xl space-y-6">
-        <Text as="h1" className="text-3xl font-bold text-black text-center">About Word Game</Text>
+        <Text as="h1" className="text-4xl font-bold text-black text-center">About Word Game</Text>
         <EventSystemSection />
         <TechStackSection />
         <KeyFeaturesSection />

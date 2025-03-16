@@ -1,36 +1,51 @@
 import type { ElementType, HTMLAttributes } from "react";
-import { cva } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import { cn } from "@/design/utils";
+import { textVariants } from "@/design/components";
+import { TextVariant, FontWeight, FontFamily, TextSize } from "@/design/constants";
 
-const textVariants = cva("font-head", {
-  variants: {
-    as: {
-      p: "font-sans text-base",
-      li: "font-sans text-base",
-      a: "font-sans text-base hover:underline underline-offset-2 decoration-primary-500",
-      h1: "text-4xl lg:text-5xl font-bold",
-      h2: "text-3xl lg:text-4xl font-semibold",
-      h3: "text-2xl font-medium",
-      h4: "text-xl font-normal",
-      h5: "text-lg font-normal",
-      h6: "text-base font-normal",
-    },
-  },
-  defaultVariants: {
-    as: "p",
-  },
-});
+// Element-specific styles that complement the textVariants
+const elementStyles = {
+  p: "font-sans text-base",
+  li: "font-sans text-base",
+  a: "font-sans text-base hover:underline underline-offset-2 decoration-primary-500",
+  h1: "text-4xl lg:text-5xl font-bold font-head",
+  h2: "text-3xl lg:text-4xl font-semibold font-head",
+  h3: "text-2xl font-medium font-head",
+  h4: "text-xl font-normal font-head",
+  h5: "text-lg font-normal font-head",
+  h6: "text-base font-normal font-head",
+};
 
 export interface TextProps extends Omit<HTMLAttributes<HTMLElement>, "className"> {
-  as?: "p" | "li" | "a" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  as?: keyof typeof elementStyles;
+  variant?: TextVariant;
+  size?: TextSize;
+  weight?: FontWeight;
+  font?: FontFamily;
   className?: string;
 }
 
 export const Text = (props: TextProps) => {
-  const { className, as, ...otherProps } = props;
-  const Tag: ElementType = as || "p";
+  const { 
+    className, 
+    as = "p", 
+    variant = "default",
+    size,
+    weight,
+    font,
+    ...otherProps 
+  } = props;
+  
+  const Tag: ElementType = as;
 
   return (
-    <Tag className={cn(textVariants({ as }), className)} {...otherProps} />
+    <Tag 
+      className={cn(
+        elementStyles[as],
+        textVariants({ variant, size, weight, font }), 
+        className
+      )} 
+      {...otherProps} 
+    />
   );
 };

@@ -54,6 +54,7 @@ const Header = ({}: HeaderProps) => {
 							{/* Help button - visible on all screens */}
 							<Button
 								variant="outline"
+								size="md"
 								className="flex items-center gap-2 border-2 border-black"
 								onClick={() => setIsHelpOpen(true)}
 							>
