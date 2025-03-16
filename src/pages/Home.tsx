@@ -4,8 +4,10 @@ import GameHeader from "../components/GameHeader";
 import GameControls from "../components/GameControls";
 import { Card } from "@/components/ui/Card";
 import { Text } from "@/components/ui/Text";
+import { Button } from "@/components/ui/Button";
 import { WORD_LENGTH } from "../constants";
 import { HomeProps } from "@/types";
+import { actionListener } from "../MyActionListener";
 
 const Home = ({}: HomeProps) => {
 	const {
@@ -17,6 +19,19 @@ const Home = ({}: HomeProps) => {
 		handleCheckWord,
 		resetGame,
 	} = useWordGame(WORD_LENGTH);
+
+	// Function to test error handling
+	const testActionListener = () => {
+		actionListener.registerListener("PRINT", (data: string) =>
+			console.log(`Don't tell me what I ${data} or ${data}'t do`)
+		);
+		actionListener.registerListener("PRINT", (data: string) =>
+			console.log(`I eat pickles right of the ${data}`)
+		);
+		actionListener.emit("PRINT", "Can");
+		actionListener.removeListener("PRINT");
+		actionListener.emit("PRINT", "Can");
+	};
 
 	return (
 		<>
@@ -47,6 +62,16 @@ const Home = ({}: HomeProps) => {
 						/>
 					</div>
 				</Card>
+			</div>
+
+			{/* Test Error Handling Button */}
+			<div className="mt-4">
+				<Button
+					onClick={testActionListener}
+					className="bg-red-500 hover:bg-red-600 text-white"
+				>
+					Test My Action Listener Handling (Look at the console)
+				</Button>
 			</div>
 		</>
 	);
