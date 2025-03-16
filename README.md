@@ -33,40 +33,43 @@ A fun and interactive word game where you can challenge your vocabulary! Built w
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/michaelmichaeli/word-game.git
 cd word-game
 ```
 
-2. Install dependencies:
+1. Install dependencies:
+
 ```bash
 npm install
 # or
 yarn
 ```
 
-3. Start the development server:
+1. Start the development server:
+
 ```bash
 npm run dev
 # or
 yarn dev
 ```
 
-4. Open your browser and navigate to `http://localhost:5173`
+1. Open your browser and navigate to `http://localhost:5173`
 
 ## 🎮 How to Play
 
 1. Type or click letters to form a 5-letter word
-2. Use backspace to remove letters if you make a mistake
-3. Press Enter when your word is complete
-4. The game will check if your word exists:
+1. Use backspace to remove letters if you make a mistake
+1. Press Enter when your word is complete
+1. The game will check if your word exists:
    - ✅ Green border = Valid word
    - ❌ Red border = Invalid word
-5. Press the Reset button to start over
+1. Press the Reset button to start over
 
 ## 🏗️ Project Structure
 
-```
+```text
 src/
 ├── components/     # UI components
 ├── hooks/         # Custom React hooks
@@ -85,10 +88,10 @@ src/
 
 ## 🔄 Game Actions
 
-- `ADD_CHARACTER`: Add a letter to the word
-- `REMOVE_CHARACTER`: Remove the last letter
-- `CHECK_WORD`: Validate the word
-- `RESET_GAME`: Start a new game
+- Add a letter to the word
+- Remove the last letter
+- Validate the word
+- Start a new game
 
 ## 📝 License
 

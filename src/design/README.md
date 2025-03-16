@@ -79,4 +79,4 @@ const responsiveSize = fluidType(16, 24); // Fluid typography between 16px and 2
 2. Use the component variants for consistent styling
 3. Use the type definitions for type-safe component props
 4. Extend the design system when adding new components or tokens
-5. Keep the design system in sync with CSS variables in `index.css` 
+5. Keep the design system in sync with CSS variables in `index.css`

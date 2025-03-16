@@ -16,13 +16,14 @@ const elementStyles = {
   h6: "text-base font-normal font-head",
 };
 
-export interface TextProps extends Omit<HTMLAttributes<HTMLElement>, "className"> {
+// Define TextProps by extending HTMLAttributes and redefining className
+export interface TextProps extends HTMLAttributes<HTMLElement> {
   as?: keyof typeof elementStyles;
   variant?: TextVariant;
   size?: TextSize;
   weight?: FontWeight;
   font?: FontFamily;
-  className?: string;
+  className?: string; // Redefining className here overrides the one from HTMLAttributes
 }
 
 export const Text = (props: TextProps) => {
