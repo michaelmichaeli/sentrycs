@@ -4,9 +4,7 @@ import { KeyFeaturesSection } from "@/components/about/KeyFeaturesSection";
 import { Text } from "@/components/ui/Text";
 import { Button } from "@/components/ui/Button";
 import { FiArrowLeft } from "react-icons/fi";
-
-interface AboutProps {
-}
+import { AboutProps } from "@/types";
 
 const About = ({ }: AboutProps) => {
   return (

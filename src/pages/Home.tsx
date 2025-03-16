@@ -5,8 +5,7 @@ import GameControls from "../components/GameControls";
 import { Card } from "@/components/ui/Card";
 import { Text } from "@/components/ui/Text";
 import { WORD_LENGTH } from "../constants";
-
-interface HomeProps {}
+import { HomeProps } from "@/types";
 
 const Home = ({}: HomeProps) => {
 	const {

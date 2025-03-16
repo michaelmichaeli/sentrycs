@@ -3,12 +3,7 @@ import { FiX } from "react-icons/fi";
 import { Text } from "@/components/ui/Text";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-
-interface HelpPanelProps {
-  wordLength: number;
-  isOpen: boolean;
-  onClose: () => void;
-}
+import { HelpPanelProps } from "@/types";
 
 const HelpPanel = ({ wordLength, isOpen, onClose }: HelpPanelProps) => {
   // Generate a random background color for the How-to-Play section

@@ -1,15 +1,6 @@
 import Keyboard from "./Keyboard";
 import { Button } from "@/components/ui/Button";
-
-interface GameControlsProps {
-  onAddCharacter: (char: string) => void;
-  onRemoveCharacter: () => void;
-  onCheckWord: () => void;
-  onResetGame: () => void;
-  wordLength: number;
-  currentWordLength: number;
-  isLoading: boolean;
-}
+import { GameControlsProps } from "@/types";
 
 const GameControls = ({
   onAddCharacter,

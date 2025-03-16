@@ -1,15 +1,5 @@
 import { useEffect } from 'react';
-
-interface UseKeyboardProps {
-  onCharacterClick: (char: string) => void;
-  onBackspaceClick: () => void;
-  onEnterClick: () => void;
-  onResetGame: () => void;
-  wordIsFull: boolean;
-  isLoading?: boolean;
-  disableKeys?: boolean;
-  currentWordLength?: number;
-}
+import { UseKeyboardProps } from '@/types';
 
 export const useKeyboard = ({
   onCharacterClick,

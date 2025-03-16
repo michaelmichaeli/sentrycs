@@ -1,13 +1,7 @@
 import React from 'react';
 import Square from './Square';
-import { WordStatus } from '../hooks/useWordGame';
+import { GameBoardProps, WordStatus } from '@/types';
 import { Text } from "@/components/ui/Text";
-
-interface GameBoardProps {
-  word: string[];
-  status: WordStatus;
-  maxLength: number;
-}
 
 /**
  * GameBoard component displays the squares for the word game

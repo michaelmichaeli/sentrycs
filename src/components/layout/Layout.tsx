@@ -1,11 +1,7 @@
-import { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import BackgroundDecorations from "./BackgroundDecorations";
-
-interface LayoutProps {
-	children: ReactNode;
-}
+import { LayoutProps } from "@/types";
 
 const Layout = ({ children }: LayoutProps) => {
 	return (

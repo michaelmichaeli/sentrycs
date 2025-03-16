@@ -1,11 +1,6 @@
 import { Text } from "@/components/ui/Text";
 import StatusAlert from "./StatusAlert";
-import { WordStatus } from "../hooks/useWordGame";
-
-interface GameHeaderProps {
-  isLoading: boolean;
-  status: WordStatus;
-}
+import { GameHeaderProps } from "@/types";
 
 const GameHeader = ({ isLoading, status }: GameHeaderProps) => {
   return (

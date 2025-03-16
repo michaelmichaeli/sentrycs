@@ -23,9 +23,10 @@ const buttonVariants = cva("font-head transition-all outline-none", {
   },
 });
 
-export interface IButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {}
+export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  size?: "sm" | "md" | "lg";
+  variant?: "default" | "outline" | "link";
+}
 
 export const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(
   (

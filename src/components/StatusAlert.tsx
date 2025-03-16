@@ -1,10 +1,5 @@
 import { Alert } from "@/components/ui/Alert";
-import { WordStatus } from "../hooks/useWordGame";
-
-interface StatusAlertProps {
-  isLoading: boolean;
-  status: WordStatus;
-}
+import { StatusAlertProps, WordStatus } from "@/types";
 
 const StatusAlert = ({ isLoading, status }: StatusAlertProps) => {
   if (isLoading) {

@@ -1,22 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { actionListener } from '../MyActionListener';
 import { checkWordExists } from '../services/dictionaryService';
-
-// Define action types as enum
-export enum ActionType {
-  ADD_CHARACTER = 'ADD_CHARACTER',
-  REMOVE_CHARACTER = 'REMOVE_CHARACTER',
-  CHECK_WORD = 'CHECK_WORD',
-  CHECK_WORD_COMPLETE = 'CHECK_WORD_COMPLETE',
-  RESET_GAME = 'RESET_GAME'
-}
-
-// Define status types as enum
-export enum WordStatus {
-  VALID = 'valid',
-  INVALID = 'invalid',
-  NEUTRAL = 'neutral'
-}
+import { ActionType, WordStatus } from '@/types';
 
 /**
  * Custom hook for managing the word game state and logic

@@ -5,8 +5,7 @@ import { FiHelpCircle, FiHome, FiInfo } from "react-icons/fi";
 import logo from "@/assets/logo.svg";
 import { WORD_LENGTH } from "@/constants";
 import HelpPanel from "../HelpPanel";
-
-interface HeaderProps {}
+import { HeaderProps } from "@/types";
 
 const Header = ({}: HeaderProps) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);

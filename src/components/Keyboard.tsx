@@ -3,17 +3,7 @@ import { FiDelete } from 'react-icons/fi';
 import { ImSpinner8 } from 'react-icons/im';
 import { Button } from "@/components/ui/Button";
 import { useKeyboard } from '@/hooks/useKeyboard';
-
-interface KeyboardProps {
-  onCharacterClick: (char: string) => void;
-  onBackspaceClick: () => void;
-  onEnterClick: () => void;
-  onResetGame: () => void;
-  wordIsFull: boolean;
-  isLoading?: boolean;
-  disableKeys?: boolean;
-  currentWordLength?: number;
-}
+import { KeyboardProps } from '@/types';
 
 /**
  * Keyboard component displays a virtual keyboard for the word game

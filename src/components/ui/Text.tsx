@@ -1,5 +1,5 @@
 import type { ElementType, HTMLAttributes } from "react";
-import { type VariantProps, cva } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const textVariants = cva("font-head", {
@@ -21,9 +21,8 @@ const textVariants = cva("font-head", {
   },
 });
 
-interface TextProps
-  extends Omit<HTMLAttributes<HTMLElement>, "className">,
-    VariantProps<typeof textVariants> {
+export interface TextProps extends Omit<HTMLAttributes<HTMLElement>, "className"> {
+  as?: "p" | "li" | "a" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   className?: string;
 }
 
