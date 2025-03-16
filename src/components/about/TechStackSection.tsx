@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/Card";
 import { Text } from "@/components/ui/Text";
-import { FiExternalLink, FiLayers, FiPackage, FiTool } from "react-icons/fi";
-import { SiReact, SiTypescript, SiVite, SiTailwindcss } from "react-icons/si";
+import { FiExternalLink, FiLayers, FiPackage, FiTool, FiServer, FiNavigation } from "react-icons/fi";
+import { SiReact, SiTypescript, SiVite, SiTailwindcss, SiAxios, SiRadixui, SiReactrouter } from "react-icons/si";
 import { BsTools } from "react-icons/bs";
 
 export const TechStackSection = () => {
@@ -63,6 +63,46 @@ export const TechStackSection = () => {
                 <SiTailwindcss className="text-[#38B2AC]" size={20} />
                 <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" className="hover:underline inline-flex items-center gap-1">
                   Tailwind CSS <FiExternalLink size={14} />
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <SiRadixui className="text-[#E2E8F0]" size={20} />
+                <a href="https://www.radix-ui.com/" target="_blank" rel="noopener noreferrer" className="hover:underline inline-flex items-center gap-1">
+                  Radix UI <FiExternalLink size={14} />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="space-y-2">
+          <div className="p-4 bg-primary/10 rounded-lg">
+            <div className="flex items-center gap-2 mb-2">
+              <FiNavigation size={20} />
+              <div className="font-bold text-left underline decoration-2">Routing</div>
+            </div>
+            <ul className="space-y-2">
+              <li className="flex items-center gap-2">
+                <SiReactrouter className="text-[#CA4245]" size={20} />
+                <a href="https://reactrouter.com/" target="_blank" rel="noopener noreferrer" className="hover:underline inline-flex items-center gap-1">
+                  React Router <FiExternalLink size={14} />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="space-y-2">
+          <div className="p-4 bg-primary/10 rounded-lg">
+            <div className="flex items-center gap-2 mb-2">
+              <FiServer size={20} />
+              <div className="font-bold text-left underline decoration-2">Data Fetching</div>
+            </div>
+            <ul className="space-y-2">
+              <li className="flex items-center gap-2">
+                <SiAxios className="text-[#5A29E4]" size={20} />
+                <a href="https://axios-http.com/" target="_blank" rel="noopener noreferrer" className="hover:underline inline-flex items-center gap-1">
+                  Axios <FiExternalLink size={14} />
                 </a>
               </li>
             </ul>
