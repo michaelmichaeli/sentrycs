@@ -2,6 +2,8 @@
 
 A fun and interactive word game where you can challenge your vocabulary! Built with modern web technologies and a beautiful retro-inspired design.
 
+![image](https://github.com/user-attachments/assets/09bedf3b-b97d-4e79-a495-25fb06d7ae77)
+
 ## 🌟 Features
 
 - 🎯 Challenge yourself with 5-letter words
