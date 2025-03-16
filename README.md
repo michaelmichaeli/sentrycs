@@ -1,10 +1,10 @@
 # Word Game 🎮
 
-A fun and interactive word game where you can test your vocabulary! Built with modern web technologies and a beautiful retro-inspired design.
+A fun and interactive word game where you can challenge your vocabulary! Built with modern web technologies and a beautiful retro-inspired design.
 
 ## 🌟 Features
 
-- 🎯 Test your vocabulary with 5-letter words
+- 🎯 Challenge yourself with 5-letter words
 - ⌨️ Interactive on-screen keyboard with retro-style colors
 - 🔍 Real-time word validation using the Free Dictionary API
 - 🎨 Beautiful and responsive UI with retro-inspired design
@@ -18,7 +18,6 @@ A fun and interactive word game where you can test your vocabulary! Built with m
 - **Styling**: Tailwind CSS with custom animations
 - **Build Tool**: Vite
 - **API**: Free Dictionary API
-- **Testing**: Jest and React Testing Library
 - **Icons**: React Icons
 - **UI Components**: Radix UI primitives
 - **Routing**: React Router DOM
@@ -33,36 +32,26 @@ A fun and interactive word game where you can test your vocabulary! Built with m
 ### Installation
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/word-game.git
-   cd word-game
-   ```
+```bash
+git clone https://github.com/yourusername/word-game.git
+cd word-game
+```
 
 2. Install dependencies:
-   ```bash
-   npm install
-   # or
-   yarn
-   ```
+```bash
+npm install
+# or
+yarn
+```
 
 3. Start the development server:
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+```bash
+npm run dev
+# or
+yarn dev
+```
 
 4. Open your browser and navigate to `http://localhost:5173`
-
-## 🧪 Running Tests
-
-The project includes comprehensive tests for all components, hooks, and services:
-
-```bash
-npm test
-# or
-yarn test
-```
 
 ## 🎮 How to Play
 

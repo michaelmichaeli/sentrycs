@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
 
@@ -16,14 +16,9 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": false,
+    "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    
-    /* Testing */
-    "types": ["vite/client"],
-    "esModuleInterop": true,
-    "allowJs": true,
     
     /* Import Alias */
     "baseUrl": ".",
@@ -31,6 +26,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "**/*.test.ts", "**/*.test.tsx", "jest.setup.js"],
+  "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 } 
