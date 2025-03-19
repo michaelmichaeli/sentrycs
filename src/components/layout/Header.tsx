@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
 import { FiHelpCircle, FiHome, FiInfo } from "react-icons/fi";
 import logo from "@/assets/logo.svg";
-import { WORD_LENGTH } from "@/constants";
+import { WORD_LENGTH } from "@/constants/game";
 import HelpPanel from "../HelpPanel";
+import { cn } from "@/design/utils";
+import { navLinkVariants, navLinkInnerVariants } from "@/design/components";
 
 const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,22 +29,22 @@ const Header = () => {
 							<nav className="hidden md:flex space-x-4">
 								<Link
 									to="/"
-									className="relative px-4 py-2 group overflow-hidden rounded"
+									className={navLinkVariants()}
 								>
 									<div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 									<div className="absolute inset-x-0 -bottom-[2px] h-[2px] bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-									<span className="relative z-10 flex items-center gap-2">
+									<span className={navLinkInnerVariants()}>
 										<FiHome size={20} />
 										<span>Home</span>
 									</span>
 								</Link>
 								<Link
 									to="/about"
-									className="relative px-4 py-2 group overflow-hidden rounded"
+									className={navLinkVariants()}
 								>
 									<div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 									<div className="absolute inset-x-0 -bottom-[2px] h-[2px] bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-									<span className="relative z-10 flex items-center gap-2">
+									<span className={navLinkInnerVariants()}>
 										<FiInfo size={20} />
 										<span>About</span>
 									</span>
@@ -95,7 +97,7 @@ const Header = () => {
 						<nav className="md:hidden mt-3 pb-2 space-y-2">
 							<Link
 								to="/"
-								className="flex items-center gap-2 py-2 px-4 rounded hover:bg-black/10 transition-colors"
+								className={cn(navLinkInnerVariants({ mobile: true }))}
 								onClick={() => setIsMenuOpen(false)}
 							>
 								<FiHome size={20} />
@@ -103,7 +105,7 @@ const Header = () => {
 							</Link>
 							<Link
 								to="/about"
-								className="flex items-center gap-2 py-2 px-4 rounded hover:bg-black/10 transition-colors"
+								className={cn(navLinkInnerVariants({ mobile: true }))}
 								onClick={() => setIsMenuOpen(false)}
 							>
 								<FiInfo size={20} />

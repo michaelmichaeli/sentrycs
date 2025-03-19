@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react';
-import { FiDelete, FiCornerDownLeft, FiRefreshCw } from 'react-icons/fi';
-import { Button } from "@/components/ui/Button";
+import React, { useMemo, useCallback } from 'react';
 import { useKeyboard } from '@/hooks/useKeyboard';
 import { KeyboardProps } from '@/types';
+import KeyButton from './KeyButton';
+import { KEYBOARD_ROWS, RETRO_COLORS, DISABLED_STYLE } from '@/constants/game';
 
 const Keyboard: React.FC<KeyboardProps> = ({ 
   onCharacterClick, 
@@ -14,12 +14,6 @@ const Keyboard: React.FC<KeyboardProps> = ({
   disableKeys = false,
   currentWordLength = 0
 }) => {
-  const rows = useMemo(() => [
-    ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
-    ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
-    ['Z', 'X', 'C', 'V', 'B', 'N', 'M']
-  ], []);
-
   const { isEnterDisabled, isBackspaceDisabled } = useKeyboard({
     onCharacterClick,
     onBackspaceClick,
@@ -32,147 +26,104 @@ const Keyboard: React.FC<KeyboardProps> = ({
   });
 
   const retroColors = useMemo(() => {
-    const colors = [
-      'bg-pink-400 hover:bg-pink-500',
-      'bg-purple-400 hover:bg-purple-500',
-      'bg-blue-400 hover:bg-blue-500',
-      'bg-cyan-400 hover:bg-cyan-500',
-      'bg-teal-400 hover:bg-teal-500',
-      'bg-green-400 hover:bg-green-500',
-      'bg-yellow-400 hover:bg-yellow-500',
-      'bg-orange-400 hover:bg-orange-500',
-      'bg-red-400 hover:bg-red-500',
-    ];
-    
     const colorMap: Record<string, string> = {};
-    const allChars = rows.flat();
+    const allChars = KEYBOARD_ROWS.flat();
     
     allChars.forEach(char => {
-      const randomIndex = Math.floor(Math.random() * colors.length);
-      colorMap[char] = colors[randomIndex];
+      const randomIndex = Math.floor(Math.random() * RETRO_COLORS.length);
+      colorMap[char] = RETRO_COLORS[randomIndex];
     });
     
     return colorMap;
-  }, [rows]);
+  }, []);
 
-  const handleCharClick = (char: string) => {
+  const handleCharClick = useCallback((char: string) => {
     if (!wordIsFull && !disableKeys) {
       onCharacterClick(char);
     }
-  };
+  }, [wordIsFull, disableKeys, onCharacterClick]);
 
-  const getKeyColor = (char: string) => {
+  const getKeyColor = useCallback((char: string) => {
     if (disableKeys) {
-      return 'bg-gray-200 hover:bg-gray-200 cursor-not-allowed shadow-md hover:shadow-md';
+      return DISABLED_STYLE;
     }
     return retroColors[char];
-  };
+  }, [disableKeys, retroColors]);
 
-  const disabledStyle = 'bg-gray-200 hover:bg-gray-200 cursor-not-allowed shadow-md hover:shadow-md';
-
-  const getEnterButtonStyle = () => {
+  const getEnterButtonStyle = useCallback(() => {
     if (isEnterDisabled) {
-      return disabledStyle;
+      return DISABLED_STYLE;
     }
     return 'bg-emerald-500 hover:bg-emerald-600 shadow-md';
-  };
+  }, [isEnterDisabled]);
 
-  const getBackspaceButtonStyle = () => {
+  const getBackspaceButtonStyle = useCallback(() => {
     if (isBackspaceDisabled) {
-      return disabledStyle;
+      return DISABLED_STYLE;
     }
     return 'bg-rose-500 hover:bg-rose-600 shadow-md';
-  };
+  }, [isBackspaceDisabled]);
 
-  const getResetButtonStyle = () => {
+  const getResetButtonStyle = useCallback(() => {
     if (isLoading || currentWordLength === 0) {
-      return disabledStyle;
+      return DISABLED_STYLE;
     }
     return 'bg-yellow-500 hover:bg-yellow-600 shadow-md';
-  };
+  }, [isLoading, currentWordLength]);
 
   return (
     <div className="flex flex-col items-center gap-5 w-full max-w-3xl px-1">
-      <div className="flex gap-1 justify-center w-full h-8">
-        {rows[0].map((char) => (
-          <div key={char} className="flex-1 min-w-0 h-full">
-            <Button
-              className={`w-full h-full text-xs text-white font-bold shadow-md ${getKeyColor(char)}`}
-              onClick={() => handleCharClick(char)}
+      {KEYBOARD_ROWS.slice(0, 2).map((row, index) => (
+        <div key={index} className={`flex gap-1 justify-center w-full h-8 ${index === 1 ? 'w-[95%]' : ''}`}>
+          {row.map((char) => (
+            <KeyButton
+              key={char}
+              char={char}
+              onClick={handleCharClick}
               disabled={isLoading || disableKeys}
-              variant="default"
-            >
-              {char}
-            </Button>
-          </div>
-        ))}
-      </div>
-
-      <div className="flex gap-1 justify-center w-[95%] h-8">
-        {rows[1].map((char) => (
-          <div key={char} className="flex-1 min-w-0 h-full">
-            <Button
-              className={`w-full h-full text-xs text-white font-bold shadow-md ${getKeyColor(char)}`}
-              onClick={() => handleCharClick(char)}
-              disabled={isLoading || disableKeys}
-              variant="default"
-            >
-              {char}
-            </Button>
-          </div>
-        ))}
-      </div>
+              color={getKeyColor(char)}
+            />
+          ))}
+        </div>
+      ))}
 
       <div className="flex gap-1 justify-center w-full h-8">
         <div className="w-[18%] h-full">
-          <Button
-            className={`w-full h-full flex items-center justify-center text-[10px] text-white ${getEnterButtonStyle()}`}
+          <KeyButton
+            char="ENTER"
             onClick={onEnterClick}
             disabled={isEnterDisabled}
-            title={!wordIsFull ? "Complete the word first" : "Check word"}
-            variant={isEnterDisabled ? "outline" : "default"}
-          >
-            <FiCornerDownLeft size={16} className="mr-1 text-white" />
-            <span>ENTER</span>
-          </Button>
+            color={getEnterButtonStyle()}
+          />
         </div>
 
-        {rows[2].map((char) => (
-          <div key={char} className="flex-1 min-w-0 h-full">
-            <Button
-              className={`w-full h-full text-xs text-white font-bold shadow-md ${getKeyColor(char)}`}
-              onClick={() => handleCharClick(char)}
-              disabled={isLoading || disableKeys}
-              variant="default"
-            >
-              {char}
-            </Button>
-          </div>
+        {KEYBOARD_ROWS[2].map((char) => (
+          <KeyButton
+            key={char}
+            char={char}
+            onClick={handleCharClick}
+            disabled={isLoading || disableKeys}
+            color={getKeyColor(char)}
+          />
         ))}
 
         <div className="w-[15%] h-full">
-          <Button
-            className={`w-full h-full flex items-center justify-center text-white ${getBackspaceButtonStyle()}`}
+          <KeyButton
+            char="⌫"
             onClick={onBackspaceClick}
-            aria-label="Backspace"
             disabled={isBackspaceDisabled}
-            variant="default"
-          >
-            <FiDelete size={16} className="text-white" />
-          </Button>
+            color={getBackspaceButtonStyle()}
+          />
         </div>
       </div>
 
       <div className="flex justify-center w-[80%] h-8 mt-1">
-        <Button
+        <KeyButton
+          char="Reset"
           onClick={onResetGame}
           disabled={isLoading || currentWordLength === 0}
-          variant="default"
-          className={`w-full h-full text-xs font-bold text-white flex items-center justify-center ${getResetButtonStyle()}`}
-        >
-          <FiRefreshCw size={16} className="mr-2 text-white" />
-          <span>Reset Game</span>
-        </Button>
+          color={getResetButtonStyle()}
+        />
       </div>
     </div>
   );

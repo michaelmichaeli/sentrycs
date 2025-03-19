@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { actionListener } from '../MyActionListener';
 import { checkWordExists } from '../services/dictionaryService';
 import { ActionType, WordStatus } from '@/types';
@@ -73,15 +73,15 @@ export const useWordGame = (maxLength: number) => {
     };
   }, [maxLength]);
 
-  const handleAddCharacter = (character: string) => {
+  const handleAddCharacter = useCallback((character: string) => {
     actionListener.emit(ActionType.ADD_CHARACTER, character);
-  };
+  }, []);
 
-  const handleRemoveCharacter = () => {
+  const handleRemoveCharacter = useCallback(() => {
     actionListener.emit(ActionType.REMOVE_CHARACTER, null);
-  };
+  }, []);
 
-  const handleCheckWord = async (): Promise<void> => {
+  const handleCheckWord = useCallback(async (): Promise<void> => {
     const isWordComplete = wordRef.current.length === maxLength;
     
     if (!isWordComplete) {
@@ -98,11 +98,11 @@ export const useWordGame = (maxLength: number) => {
       actionListener.registerListener(ActionType.CHECK_WORD_COMPLETE, onComplete);
       actionListener.emit(ActionType.CHECK_WORD, null);
     });
-  };
+  }, [maxLength]);
 
-  const resetGame = () => {
+  const resetGame = useCallback(() => {
     actionListener.emit(ActionType.RESET_GAME, null);
-  };
+  }, []);
 
   return {
     word,

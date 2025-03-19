@@ -5,9 +5,12 @@ import GameControls from "../components/GameControls";
 import { Card } from "@/components/ui/Card";
 import { Text } from "@/components/ui/Text";
 import { Button } from "@/components/ui/Button";
-import { WORD_LENGTH } from "../constants";
+import { WORD_LENGTH } from "@/constants/game";
 import { actionListener } from "../MyActionListener";
 import { FiTerminal } from "react-icons/fi";
+import { useCallback } from "react";
+import { cn } from "@/design/utils";
+import { containerVariants, gameContainerVariants } from "@/design/components";
 
 const Home = () => {
 	const {
@@ -19,6 +22,22 @@ const Home = () => {
 		handleCheckWord,
 		resetGame,
 	} = useWordGame(WORD_LENGTH);
+
+	const memoizedHandleAddCharacter = useCallback((char: string) => {
+		handleAddCharacter(char);
+	}, [handleAddCharacter]);
+
+	const memoizedHandleRemoveCharacter = useCallback(() => {
+		handleRemoveCharacter();
+	}, [handleRemoveCharacter]);
+
+	const memoizedHandleCheckWord = useCallback(() => {
+		handleCheckWord();
+	}, [handleCheckWord]);
+
+	const memoizedResetGame = useCallback(() => {
+		resetGame();
+	}, [resetGame]);
 
 	const testActionListener = () => {
 		actionListener.registerListener("PRINT", (data: unknown) => {
@@ -38,13 +57,13 @@ const Home = () => {
 
 	return (
 		<>
-			<div className="flex flex-col items-center px-2 sm:px-4">
-				<Text as="h1" className="text-4xl font-bold mb-8">
+			<div className={containerVariants({ padding: "md", gap: "lg" })}>
+				<Text as="h1" className="text-4xl font-bold">
 					Word Game
 				</Text>
 
 				<Card className="w-full max-w-2xl">
-					<div className="flex flex-col items-center justify-center p-2 sm:p-4 md:p-8 relative">
+					<div className={gameContainerVariants({ padding: "lg" })}>
 						<GameHeader isLoading={isLoading} status={status} />
 
 						<Card className="mb-4 sm:mb-8 p-2 sm:p-4">
@@ -52,10 +71,10 @@ const Home = () => {
 						</Card>
 
 						<GameControls
-							onAddCharacter={handleAddCharacter}
-							onRemoveCharacter={handleRemoveCharacter}
-							onCheckWord={handleCheckWord}
-							onResetGame={resetGame}
+							onAddCharacter={memoizedHandleAddCharacter}
+							onRemoveCharacter={memoizedHandleRemoveCharacter}
+							onCheckWord={memoizedHandleCheckWord}
+							onResetGame={memoizedResetGame}
 							wordLength={WORD_LENGTH}
 							currentWordLength={word.length}
 							isLoading={isLoading}

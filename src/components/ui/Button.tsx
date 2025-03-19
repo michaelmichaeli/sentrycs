@@ -8,7 +8,7 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(
+export const Button = React.memo(React.forwardRef<HTMLButtonElement, IButtonProps>(
   (
     {
       children,
@@ -18,15 +18,17 @@ export const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(
       ...props
     }: IButtonProps,
     forwardedRef
-  ) => (
-    <button
+  ) => {
+    console.log("Button Props: ", children);
+    
+    return <button
       ref={forwardedRef}
       className={cn(buttonVariants({ variant, size }), className)}
       {...props}
     >
       {children}
     </button>
-  )
-);
+  }
+));
 
 Button.displayName = "Button";

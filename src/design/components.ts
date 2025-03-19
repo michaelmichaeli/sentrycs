@@ -148,4 +148,84 @@ export const accordionVariants = cva("border-2 border-black", {
     variant: "default",
     rounded: "md",
   },
+});
+
+// Square variants
+export const squareVariants = cva("flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md cursor-default", {
+  variants: {
+    size: {
+      sm: "w-12 h-12",
+      md: "sm:w-14 sm:h-14",
+      lg: "md:w-16 md:h-16",
+    },
+    border: {
+      default: "border-gray-300",
+      success: "border-green-500",
+      error: "border-red-500",
+    },
+  },
+  defaultVariants: {
+    size: "sm",
+    border: "default",
+  },
+});
+
+// Navigation variants
+export const navLinkVariants = cva("relative px-4 py-2 group overflow-hidden rounded", {
+  variants: {
+    active: {
+      true: "bg-black/10",
+      false: "",
+    },
+  },
+  defaultVariants: {
+    active: false,
+  },
+});
+
+export const navLinkInnerVariants = cva("relative z-10 flex items-center gap-2", {
+  variants: {
+    mobile: {
+      true: "py-2 px-4 rounded hover:bg-black/10 transition-colors",
+      false: "",
+    },
+  },
+  defaultVariants: {
+    mobile: false,
+  },
+});
+
+// Layout variants
+export const containerVariants = cva("flex flex-col items-center", {
+  variants: {
+    padding: {
+      none: "",
+      sm: "px-2",
+      md: "px-4",
+    },
+    gap: {
+      none: "",
+      sm: "gap-2",
+      md: "gap-4",
+      lg: "gap-8",
+    },
+  },
+  defaultVariants: {
+    padding: "sm",
+    gap: "none",
+  },
+});
+
+export const gameContainerVariants = cva("flex flex-col items-center justify-center relative", {
+  variants: {
+    padding: {
+      none: "",
+      sm: "p-2",
+      md: "p-4",
+      lg: "p-8",
+    },
+  },
+  defaultVariants: {
+    padding: "md",
+  },
 }); 
