@@ -9,7 +9,6 @@ import { WORD_LENGTH } from "@/constants/game";
 import { actionListener } from "../MyActionListener";
 import { FiTerminal } from "react-icons/fi";
 import { useCallback } from "react";
-import { cn } from "@/design/utils";
 import { containerVariants, gameContainerVariants } from "@/design/components";
 
 const Home = () => {
